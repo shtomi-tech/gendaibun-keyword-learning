@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="現代文の重要キーワード210語を『覚える → 確かめる → 文中で解く → つながりを押さえる』の順に学べる無料アプリ。">
+  <meta name="theme-color" content="#f2f3f6">
+  <title>現代文キーワード 学習アプリ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/styles.css?v=0.1.0">
+</head>
+<body>
+  <a class="skipLink" href="#main">学習内容へ移動</a>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <span class="backlink">Gendaibun ・ Modern Japanese Keywords</span>
+        <h1>現代文キーワード 学習アプリ</h1>
+      </div>
+      <p class="shareStatus" id="shareStatus" role="status" aria-live="polite"></p>
+    </header>
+    <main id="main">
+      <div id="homePanel" aria-busy="true">
+        <div class="skeleton" aria-hidden="true">
+          <div class="skeletonLine" style="width:35%"></div>
+          <div class="skeletonLine skeletonLine--title"></div>
+          <div class="skeletonLine" style="width:85%"></div>
+          <div class="skeletonLine skeletonLine--cta"></div>
+        </div>
+        <p class="visuallyHidden">学習データを読み込んでいます。</p>
+      </div>
+      <div id="sessionPanel" class="hide"></div>
+    </main>
+  </div>
+  <script src="static/srs.js?v=0.1.0"></script>
+  <script src="static/set-progress.js?v=0.1.0"></script>
+  <script src="static/meaning-guard.js?v=0.1.0"></script>
+  <script src="static/cloud.js?v=0.1.0"></script>
+  <script src="static/mode-vocab.js?v=0.1.0"></script>
+  <script src="static/app.js?v=0.1.0"></script>
+</body>
+</html>

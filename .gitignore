@@ -1,0 +1,8 @@
+static/config.json
+_site/
+.claude/*
+!.claude/skills/
+
+# 著作物の混入防止。書籍のスキャンPDFはリポジトリに入れない（docs/AUTHORING_STANDARD.md）。
+*.pdf
+scan/

@@ -1,0 +1,9 @@
+{
+  "defaultSetId": "gk-set-01",
+  "sets": {
+    "gk-set-01": {
+      "label": "第1セット　普遍と特殊・具体と抽象",
+      "dataUrl": "data/set-01.json"
+    }
+  }
+}
