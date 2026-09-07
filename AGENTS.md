@@ -42,6 +42,13 @@ node scripts/check-study-plan.cjs
 
 UIに関わる変更は実ブラウザ（`8063`）で、STEP 1〜4と最終チェックの通し、コンソールエラー、320〜375px幅、キーボード操作を確認する。
 
+## 生徒別クラウド同期
+
+`static/cloud.js` は `kobun-vocab-learning` と同じ共通契約（`portal/student_progress_contract.md`）で有効。`mount()` が `GendaibunCloud.create({ appId: "gendaibun-keyword-learning" })` を呼び、生徒専用URL（`?s=&t=`）のときだけ `app_auth_student` → `app_load_progress` → `app_save_progress_dataset` を実行する。
+
+- 公開版の `static/config.json` は Actions の `SUPABASE_URL` / `SUPABASE_ANON_KEY`（anon キーのみ）から `scripts/write-config.mjs` が生成する。`config.json` は `.gitignore` 済み。
+- シークレット未設定なら `config.json` は空になり、匿名 `localStorage` へ自動フォールバックする。契約変更（新RPC・スキーマ）は `portal` 側の正本に従う。
+
 ## 範囲外（別途の明示指示を待つ）
 
-`git init`・リモート作成・push・GitHub Pages公開・portal登録。第2セット以降のデータ。Supabase同期の有効化。
+第6セット以降のデータ作成（書籍番号51〜210）。共通進捗スキーマ・RPCそのものの変更。

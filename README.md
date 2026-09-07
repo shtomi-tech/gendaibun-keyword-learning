@@ -25,7 +25,7 @@ py -3 -m http.server 8063 --bind 127.0.0.1
 6. **STEP 4 つながり** — 「〈語〉と対になる語は？」を4択で選ぶ。対義語を持たない語は「関わりの深い語は？」として関連語で出題する（全10語）
 7. **最終チェック** — 全10語の意味を4択で解き、80%以上でCLEAR（STEP 4の正誤は合否に算入しない）
 
-進捗と途中位置はブラウザの `localStorage`（キー接頭辞 `gendaibun_keyword_*`）に保存します。
+進捗と途中位置はブラウザの `localStorage`（キー接頭辞 `gendaibun_keyword_*`）に保存します。ポータルの配布シートで発行した生徒専用URL（`?s=<生徒ID>&t=<トークン>`）で開くと、進捗を共通Supabaseにクラウド保存し、別端末でも同じ生徒として再開できます（[生徒別クラウド同期](#生徒別クラウド同期)）。
 
 ## 補助学習（`kobun-vocab-learning` から継承）
 
@@ -58,7 +58,15 @@ py -3 -m http.server 8063 --bind 127.0.0.1
 
 **書籍本文は転記しません。スキャンPDFはリポジトリに入れません**（`.gitignore` に `*.pdf` / `scan/` を登録）。作成基準は [docs/AUTHORING_STANDARD.md](docs/AUTHORING_STANDARD.md)、UIの差分は [DESIGN.md](DESIGN.md) を正本とします。
 
+## 生徒別クラウド同期
+
+`kobun-vocab-learning` と同じ共通契約（`portal/student_progress_contract.md`）で動きます。
+
+- 生徒登録は共通テーブル `app_students` に1回だけ。ポータルの配布シートの「生徒を管理」から発行するSQLをSupabaseで実行する。
+- このアプリの進捗は `app_progress` の `app = gendaibun-keyword-learning` に保存され、他アプリとは混ざらない。
+- 公開版の `static/config.json` は GitHub Actions の `SUPABASE_URL` / `SUPABASE_ANON_KEY`（**anon キーのみ。`service_role` は配布しない**）から `scripts/write-config.mjs` が生成する。シークレット未設定なら `config.json` は空になり、匿名ローカル保存へ自動フォールバックする。
+- `?s=` / `?t=` の無い通常アクセスでは、これまでどおり `localStorage` のみで動く。
+
 ## 本リポジトリの範囲外
 
 - 第6セット以降のデータ作成（書籍番号51〜210）
-- Supabaseクラウド同期（`static/cloud.js` は残しているが未使用。`static/config.json` を置かない限り匿名ローカル保存のみで動作する）
