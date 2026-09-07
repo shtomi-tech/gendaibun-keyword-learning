@@ -4,6 +4,8 @@
 
 収録目標は210語（10語 × 21セット）。このリポジトリの現状は**第1セットのみ**です。
 
+公開版: https://shtomi-tech.github.io/gendaibun-keyword-learning/
+
 ## 起動
 
 ```powershell
