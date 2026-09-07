@@ -1227,12 +1227,30 @@ const GendaibunKeywordApp = (() => {
     return { answer: null, kind: null };
   }
 
+  // 誤答は同セットの見出し語に加えて、他語の対義語・関連語からも採る。
+  // 見出し語だけを誤答にすると、正解がセット外の語（権威→権力 など）のとき
+  // 「セットに無い語」を選ぶだけで当たってしまうため、正解がセット外なら
+  // 誤答にもセット外の語を必ず1つ混ぜる。
   function linkChoiceSet(word, answer) {
-    const pool = state.set.words
-      .filter((other) => other.id !== word.id && other.headword !== answer)
-      .map((other) => other.headword)
-      .filter((value, index, values) => values.indexOf(value) === index);
-    return shuffle([answer, ...shuffle(pool).slice(0, 3)]);
+    const headwords = new Set(state.set.words.map((other) => other.headword));
+    const excluded = new Set([word.headword, answer, ...(word.antonyms || []), ...(word.related || [])]);
+    const pool = [];
+    state.set.words.forEach((other) => {
+      const values = other.id === word.id ? [] : [other.headword];
+      values.push(...(other.antonyms || []), ...(other.related || []));
+      values.forEach((value) => {
+        if (!excluded.has(value) && !pool.includes(value)) pool.push(value);
+      });
+    });
+    const picks = [];
+    if (!headwords.has(answer)) {
+      const outsiders = pool.filter((value) => !headwords.has(value));
+      if (outsiders.length) picks.push(shuffle(outsiders)[0]);
+    }
+    shuffle(pool).forEach((value) => {
+      if (picks.length < 3 && !picks.includes(value)) picks.push(value);
+    });
+    return shuffle([answer, ...picks]);
   }
 
   function renderLink(panel) {

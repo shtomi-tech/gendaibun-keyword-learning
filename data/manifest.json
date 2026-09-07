@@ -4,6 +4,22 @@
     "gk-set-01": {
       "label": "第1セット　普遍と特殊・具体と抽象",
       "dataUrl": "data/set-01.json"
+    },
+    "gk-set-02": {
+      "label": "第2セット　権力・合理・懐疑",
+      "dataUrl": "data/set-02.json"
+    },
+    "gk-set-03": {
+      "label": "第3セット　概念と理念・絶対と相対",
+      "dataUrl": "data/set-03.json"
+    },
+    "gk-set-04": {
+      "label": "第4セット　多元・自律と他律",
+      "dataUrl": "data/set-04.json"
+    },
+    "gk-set-05": {
+      "label": "第5セット　科学とテクノロジー",
+      "dataUrl": "data/set-05.json"
     }
   }
 }
