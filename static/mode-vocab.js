@@ -1098,6 +1098,18 @@ const GendaibunKeywordApp = (() => {
     ));
   }
 
+  /* 解答直後に、その問題の解答時間と前回までの平均を出す。
+     間隔の伸び方が解答時間で変わるため、何が測られているかを見せる。
+     測れなかった回（中断・再開で60秒超）は何も出さない。 */
+  function responseTimeNote() {
+    if (session.mode !== "meaningReview") return null;
+    const elapsed = session.lastElapsedMs;
+    if (!Number.isFinite(elapsed)) return null;
+    const average = session.prevAvgMs;
+    const compare = Number.isFinite(average) ? `（前回までの平均 ${(average / 1000).toFixed(1)} 秒）` : "";
+    return el("p", { class: "hint responseTimeNote" }, `出題から ${(elapsed / 1000).toFixed(1)} 秒で解答${compare}`);
+  }
+
   function renderQuiz(panel, kind) {
     const order = kind === "meaning" ? session.meaningOrder : session.contextOrder;
     const index = kind === "meaning" ? session.meaningIndex : session.contextIndex;
@@ -1111,6 +1123,13 @@ const GendaibunKeywordApp = (() => {
     const entryKey = `${session.mode}:${kind}:${order[index]}`;
     const isNewEntry = entryKey !== lastQuizEntryKey;
     lastQuizEntryKey = entryKey;
+    // 解答時間の起点は「問題が出た瞬間」。同じ問題の再描画では測り直さない。
+    if (!session.answered && isNewEntry) {
+      session.askedAt = Date.now();
+      // 前の問題の計測値をフィードバックへ持ち越さない。
+      session.lastElapsedMs = null;
+      session.prevAvgMs = null;
+    }
 
     const box = el("section", { class: `quiz${session.answered ? " quiz--answered" : ""}${!session.answered && isNewEntry ? " is-entering" : ""}` },
       el("p", { class: "label" }, isMeaningExample ? "傍線部の語の意味として最も適当なものを選べ" : "空欄に入るキーワードを選べ"),
@@ -1147,6 +1166,7 @@ const GendaibunKeywordApp = (() => {
         el("div", { class: "feedbackDetails" },
           isMeaningExample ? el("p", { class: "meaningExample" }, exampleBody(word, { underline: true })) : null,
           kind === "context" ? el("p", { class: "example" }, exampleBody(word)) : null,
+          responseTimeNote(),
         ),
       ));
     }
@@ -1169,7 +1189,16 @@ const GendaibunKeywordApp = (() => {
         const progress = entry?.progress || state.progress;
         const wordId = entry?.word.id || id;
         progress.items = progress.items || {};
-        progress.items[wordId] = GendaibunSrs.record(progress.items[wordId], isCorrect);
+        // 中断・再開で伸びた計測は measuredMs が捨てる。中央値はその回の正解ぶんだけで作る。
+        const elapsedMs = GendaibunSrs.measuredMs(Date.now() - (session.askedAt || 0));
+        // 表示用。平均は record が更新する前の値（＝前回までの平均）を控える。
+        session.lastElapsedMs = elapsedMs;
+        session.prevAvgMs = GendaibunSrs.normalize(progress.items[wordId]).avgMs;
+        progress.items[wordId] = GendaibunSrs.record(progress.items[wordId], isCorrect, new Date(), {
+          elapsedMs,
+          medianMs: GendaibunSrs.medianMs(session.rtLog || []),
+        });
+        if (isCorrect && elapsedMs !== null) (session.rtLog || (session.rtLog = [])).push(elapsedMs);
         appendHistory({ kind: "meaning", wordId, result: isCorrect ? "correct" : "wrong" }, progress);
         saveProgressFor(entry?.setId || state.setId, progress);
       } else if (session.mode === "final") {
