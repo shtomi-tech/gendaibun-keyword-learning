@@ -4,7 +4,7 @@
 
 ## このアプリ
 
-現代文キーワードの静的学習Webアプリ。`kobun-vocab-learning` を複製し、古文固有のデータ・ロジック（和歌 `waka`、現代語訳 `translation`、音数フィルタ、典拠台帳、NDL底本照合）を除いたもの。学習コア（暗記カード → 意味四択 → 誤答確認 → 文中四択 → 最終チェック）とSRS・学習目標・セット状態・履歴を継承している。対義語・関連語は単語カードに表示するが、独立した演習にはしない。
+現代文キーワードの静的学習Webアプリ。`kobun-vocab-learning` を複製し、古文固有のデータ・ロジック（和歌 `waka`、現代語訳 `translation`、音数フィルタ、典拠台帳、NDL底本照合）を除いたもの。学習コア（暗記カード → 意味四択 → 誤答確認 → 文中四択 → セット完了）とSRS・学習目標・セット状態・履歴を継承している。対義語・関連語は単語カードに表示するが、独立した演習にはしない。
 
 - 名前空間: `GendaibunKeywordApp` / `GendaibunSetProgress` / `GendaibunMeaningGuard` / `GendaibunSrs` / `GendaibunCloud`
 - `localStorage` 接頭辞: `gendaibun_keyword_*`
@@ -39,7 +39,7 @@ node scripts/check-set-progress.cjs
 node scripts/check-study-plan.cjs
 ```
 
-UIに関わる変更は実ブラウザ（`8063`）で、STEP 1〜3と最終チェックの通し、コンソールエラー、320〜375px幅、キーボード操作を確認する。
+UIに関わる変更は実ブラウザ（`8063`）で、STEP 1〜3とセット完了までの通し、コンソールエラー、320〜375px幅、キーボード操作を確認する。
 
 ## 生徒別クラウド同期
 

@@ -9,7 +9,6 @@ const GendaibunKeywordApp = (() => {
   const storageScope = sharedStudentId ? `_${encodeURIComponent(sharedStudentId)}` : "";
   const SET_KEY = `gendaibun_keyword_dataset${storageScope}`;
   const PROGRESS_PREFIX = `gendaibun_keyword_progress${storageScope}_`;
-  const PASS_RATE = 0.8;
   const BATCH_SIZE = 5;
   const MEANING_SESSION_SIZE = 20;
   const HISTORY_LIMIT = 500;
@@ -62,7 +61,6 @@ const GendaibunKeywordApp = (() => {
     return copy;
   };
   const progressKey = (setId = state.setId) => PROGRESS_PREFIX + setId;
-  const passScore = () => Math.ceil(state.set.words.length * PASS_RATE);
   const { meaningText, isSafePair: isMeaningSafePair } = GendaibunMeaningGuard;
   const wordById = (id) => state.set.words.find((word) => word.id === id);
   const exampleBlank = "（　）";
@@ -95,17 +93,16 @@ const GendaibunKeywordApp = (() => {
     try {
       const saved = JSON.parse(localStorage.getItem(progressKey(setId)));
       if (saved && typeof saved === "object") {
-        const progress = { units: {}, finalCheck: {}, ...saved };
+        const progress = { units: {}, ...saved };
         const dataVersion = set.meta.dataVersion || 1;
         let changed = false;
         if (progress.dataVersion !== dataVersion) {
           progress.dataVersion = dataVersion;
-          progress.finalCheck = {};
           delete progress.resume;
           changed = true;
         }
-        // 削除した STEP 4 の途中保存は再開させず、最終チェックへ戻す。
-        if (progress.resume?.stage === "link") {
+        // 削除した演習の途中保存は再開させず、セット一覧へ戻す。
+        if (progress.resume?.stage === "link" || progress.resume?.mode === "final") {
           delete progress.resume;
           changed = true;
         }
@@ -113,7 +110,7 @@ const GendaibunKeywordApp = (() => {
         return progress;
       }
     } catch (_) { /* 壊れた記録は上書きせず、今回だけ空状態で表示する。 */ }
-    return { units: {}, finalCheck: {}, dataVersion: set.meta.dataVersion || 1 };
+    return { units: {}, dataVersion: set.meta.dataVersion || 1 };
   }
 
   function saveProgressFor(setId, progress) {
@@ -466,7 +463,7 @@ const GendaibunKeywordApp = (() => {
     const batchLength = (resume.order || []).slice(batchStart, batchStart + BATCH_SIZE).length || BATCH_SIZE;
     const stage = {
       flash: `STEP 1 覚える ${Number(resume.index || 0) + 1}/${batchLength}`,
-      meaning: resume.mode === "final" ? "最終チェック" : resume.mode === "meaningReview" ? "意味だけ復習" : "STEP 2 確かめる",
+      meaning: resume.mode === "meaningReview" ? "意味だけ復習" : "STEP 2 確かめる",
       wrongReview: "誤答確認",
       context: resume.mode === "review" ? "誤答復習" : "STEP 3 文中で解く",
       done: "完了",
@@ -488,9 +485,9 @@ const GendaibunKeywordApp = (() => {
     const learned = summary.learnedCount;
     const solved = state.set.words.filter((word) => unit(word.id).solvedCorrect).length;
     const reviews = reviewIds();
-    const final = state.progress.finalCheck || {};
     const resume = state.progress.resume;
-    const nextUnclearedId = final.cleared && !resume && !reviews.length ? nextUnclearedSetId(state.setId) : null;
+    const isCleared = summary.key === "cleared";
+    const nextUnclearedId = isCleared && !resume && !reviews.length ? nextUnclearedSetId(state.setId) : null;
     const isFirstReveal = !homeIntroduced;
     const isFirstVisit = learned === 0;
     homeIntroduced = true;
@@ -504,7 +501,7 @@ const GendaibunKeywordApp = (() => {
     }
 
     const card = el("section", { class: `card${isFirstReveal ? " is-entering" : ""}` },
-      el("p", { class: "label" }, final.cleared ? "達成状況" : "今日の学習"),
+      el("p", { class: "label" }, isCleared ? "達成状況" : "今日の学習"),
       el("h2", {}, state.set.meta.title),
     );
 
@@ -520,7 +517,6 @@ const GendaibunKeywordApp = (() => {
     if (resume) primary = ["続きから再開する", restoreSession, "保存した位置から再開します。"];
     else if (learned < total) primary = [`${total}語の学習を始める`, startLearn, `${BATCH_SIZE}語の暗記カードと意味確認を1ブロックとして進めます。`];
     else if (reviews.length) primary = [`間違えた${reviews.length}語を復習する`, startReview, "文中問題を解き直します。"];
-    else if (!final.cleared) primary = ["最終チェックに挑戦する", startFinal, `${passScore()}/${total}問以上でCLEARです。`];
     else if (nextUnclearedId) {
       const nextIndex = Object.keys(state.manifest.sets).indexOf(nextUnclearedId) + 1;
       primary = [`第${nextIndex}セットへ進む →`, () => switchSet(nextUnclearedId), "次の未CLEARセットを開きます。"];
@@ -539,7 +535,6 @@ const GendaibunKeywordApp = (() => {
       stat(learned, total, "文中回答済み"),
       stat(summary.reviewCount, total, "復習対象"),
       stat(solved, total, "正解確認済み", { secondary: true }),
-      stat(summary.bestScore, total, "最終 BEST", { secondary: true }),
     ));
     home.appendChild(card);
     home.appendChild(vocabGoalCard());
@@ -940,16 +935,6 @@ const GendaibunKeywordApp = (() => {
     renderSession();
   }
 
-  function startFinal() {
-    const ids = shuffle(state.set.words.map((word) => word.id));
-    session = {
-      mode: "final", stage: "meaning", meaningOrder: ids, meaningIndex: 0,
-      meaningCorrect: 0, wrongMeaningIds: [], reviewedIds: [], answered: false, choices: null,
-    };
-    lastStepKey = stepKey();
-    renderSession();
-  }
-
   function restoreSession() {
     session = JSON.parse(JSON.stringify(state.progress.resume));
     lastStepKey = stepKey();
@@ -999,7 +984,6 @@ const GendaibunKeywordApp = (() => {
   function stageTitle() {
     if (session.mode === "review") return "間違えた語を解き直す";
     if (session.mode === "meaningReview") return session.stage === "done" ? "意味だけ復習完了" : session.stage === "wrongReview" ? "間違えた語を確認" : "意味だけ復習";
-    if (session.mode === "final") return session.stage === "done" ? "最終チェック完了" : "最終チェック";
     return {
       flash: `STEP 1　覚える（第${session.batchIndex + 1}ブロック）`,
       meaning: `STEP 2　確かめる（第${session.batchIndex + 1}ブロック）`,
@@ -1016,9 +1000,9 @@ const GendaibunKeywordApp = (() => {
   function stepBar() {
     const steps = session.mode === "learn" ? ["flash", "meaning", "wrongReview", "context"]
       : session.mode === "meaningReview" ? ["meaning", "wrongReview"]
-        : [session.mode === "final" ? "meaning" : "context"];
+        : ["context"];
     const block = session.mode === "learn" ? ` ${session.batchIndex + 1}/${session.batchCount}` : "";
-    const labels = { flash: `1 覚える${block}`, meaning: session.mode === "final" ? "最終チェック" : session.mode === "meaningReview" ? "意味だけ復習" : `2 確かめる${block}`, wrongReview: "必要なら復習", context: "3 解く" };
+    const labels = { flash: `1 覚える${block}`, meaning: session.mode === "meaningReview" ? "意味だけ復習" : `2 確かめる${block}`, wrongReview: "必要なら復習", context: "3 解く" };
     const current = steps.indexOf(session.stage);
     const key = stepKey();
     const changed = key !== lastStepKey;
@@ -1200,10 +1184,7 @@ const GendaibunKeywordApp = (() => {
         if (isCorrect && elapsedMs !== null) (session.rtLog || (session.rtLog = [])).push(elapsedMs);
         appendHistory({ kind: "meaning", wordId, result: isCorrect ? "correct" : "wrong" }, progress);
         saveProgressFor(entry?.setId || state.setId, progress);
-      } else if (session.mode === "final") {
-        appendHistory({ kind: "final", wordId: id, result: isCorrect ? "correct" : "wrong" });
       }
-      if (session.mode === "final" && index === session.meaningOrder.length - 1) saveFinalResult();
     } else {
       if (isCorrect) session.contextCorrect++;
       const u = unit(id);
@@ -1237,7 +1218,7 @@ const GendaibunKeywordApp = (() => {
       session.meaningOrder = shuffle(currentBatchIds());
       session.stage = "flash";
     } else if (kind === "meaning" && session.wrongMeaningIds.length) session.stage = "wrongReview";
-    else if (kind === "meaning") session.stage = (session.mode === "final" || session.mode === "meaningReview") ? "done" : "context";
+    else if (kind === "meaning") session.stage = session.mode === "meaningReview" ? "done" : "context";
     else session.stage = "done";
     renderSession();
     $(".askWord, .meaningExample, .cloze")?.focus({ preventScroll: true });
@@ -1273,7 +1254,6 @@ const GendaibunKeywordApp = (() => {
     const reviewedCount = session.reviewedIds.length;
     const remainingIds = session.wrongMeaningIds.filter((id) => !session.reviewedIds.includes(id));
     const nextId = remainingIds[0];
-    const isFinalStage = session.mode === "final" || session.mode === "meaningReview";
     panel.appendChild(el("p", { class: "reviewProgress" }, `未確認 ${remainingIds.length} / 全${total}語・確認済み ${reviewedCount}語`));
     const list = el("div", { class: "reviewList" });
     if (nextId) {
@@ -1284,7 +1264,7 @@ const GendaibunKeywordApp = (() => {
       card.setAttribute("tabindex", "-1");
       const last = remainingIds.length === 1;
       const nextLabel = last
-        ? (isFinalStage ? "確認した・結果を見る →" : "確認した・文中問題へ →")
+        ? (session.mode === "meaningReview" ? "確認した・結果を見る →" : "確認した・文中問題へ →")
         : "確認した・次の誤答へ →";
       card.appendChild(el("button", { class: "ghost", onclick: () => {
         if (!session.reviewedIds.includes(nextId)) {
@@ -1292,13 +1272,13 @@ const GendaibunKeywordApp = (() => {
           appendHistory({ kind: "wrong-review", wordId: entry?.word.id || nextId, result: "viewed" }, entry?.progress || state.progress);
           saveProgressFor(entry?.setId || state.setId, entry?.progress || state.progress);
         }
-        if (last) {
-          session.stage = isFinalStage ? "done" : "context";
+          if (last) {
+            session.stage = session.mode === "meaningReview" ? "done" : "context";
           session.answered = false;
           session.choices = null;
         }
         renderSession();
-        const destination = last ? $(isFinalStage ? ".doneBanner h2" : ".askWord, .meaningExample, .cloze") : $(".reviewCard");
+        const destination = last ? $(session.mode === "meaningReview" ? ".doneBanner h2" : ".askWord, .meaningExample, .cloze") : $(".reviewCard");
         if (destination) {
           if (!destination.hasAttribute("tabindex")) destination.setAttribute("tabindex", "-1");
           destination.focus({ preventScroll: true });
@@ -1309,53 +1289,30 @@ const GendaibunKeywordApp = (() => {
     panel.appendChild(list);
     if (!nextId) {
       panel.appendChild(el("button", { class: "cta", onclick: () => {
-        session.stage = isFinalStage ? "done" : "context";
+        session.stage = session.mode === "meaningReview" ? "done" : "context";
         session.answered = false;
         session.choices = null;
         renderSession();
-      } }, isFinalStage ? "結果を見る →" : "文中問題へ →"));
+      } }, session.mode === "meaningReview" ? "結果を見る →" : "文中問題へ →"));
     }
-  }
-
-  function saveFinalResult() {
-    const final = state.progress.finalCheck || (state.progress.finalCheck = {});
-    const wasCleared = Boolean(final.cleared);
-    final.lastScore = session.meaningCorrect;
-    final.bestScore = Math.max(final.bestScore || 0, session.meaningCorrect);
-    final.lastTriedAt = new Date().toISOString();
-    if (session.meaningCorrect >= passScore()) {
-      final.cleared = true;
-      final.clearedAt = new Date().toISOString();
-    }
-    session.firstClear = !wasCleared && final.cleared === true;
-    saveProgress();
   }
 
   function renderDone(panel) {
     clearResume();
-    const isFinal = session.mode === "final";
     const isMeaningReview = session.mode === "meaningReview";
-    const score = (isFinal || isMeaningReview) ? session.meaningCorrect : session.contextCorrect;
-    const total = (isFinal || isMeaningReview) ? session.meaningOrder.length : session.contextOrder.length;
-    const passed = isFinal && score >= passScore();
-    const finalCleared = state.progress.finalCheck?.cleared;
-    const celebrateFirstClear = isFinal && passed && session.firstClear;
-    panel.appendChild(el("section", { class: `doneBanner${passed ? " doneBanner--success" : ""}` },
+    const score = isMeaningReview ? session.meaningCorrect : session.contextCorrect;
+    const total = isMeaningReview ? session.meaningOrder.length : session.contextOrder.length;
+    const completedSet = !isMeaningReview && allSolved();
+    panel.appendChild(el("section", { class: `doneBanner${completedSet ? " doneBanner--success" : ""}` },
       el("p", { class: "label" }, "学習結果"),
-      el("div", { class: `score${celebrateFirstClear ? " is-settling" : ""}` }, `${score} / ${total}`),
-      el("h2", { class: celebrateFirstClear ? "firstClear" : "" }, isFinal ? (passed ? `${state.set.meta.title} CLEAR` : "最終チェック完了") : isMeaningReview ? "意味だけ復習が完了しました" : (session.mode === "review" ? "誤答復習が完了しました" : "通常学習が完了しました")),
-      el("p", { class: "hint" }, isFinal ? `${passScore()}/${state.set.words.length}問以上でCLEAR` : isMeaningReview ? "正解した語は次の復習日へ、誤答した語は要再確認へ戻りました。" : (reviewIds().length ? `復習対象があと${reviewIds().length}語あります。` : "全語の文中問題に正解しました。")),
+      el("div", { class: "score" }, `${score} / ${total}`),
+      el("h2", {}, isMeaningReview ? "意味だけ復習が完了しました" : (session.mode === "review" ? "誤答復習が完了しました" : "通常学習が完了しました")),
+      el("p", { class: "hint" }, isMeaningReview ? "正解した語は次の復習日へ、誤答した語は要再確認へ戻りました。" : (reviewIds().length ? `復習対象があと${reviewIds().length}語あります。` : "全語の文中問題に正解しました。")),
     ));
     const actions = el("div", { class: "actions doneActions" });
     if (!isMeaningReview && reviewIds().length) actions.appendChild(el("button", { class: "cta reviewCta", onclick: startReview }, `間違えた${reviewIds().length}語を復習する →`));
     else if (isMeaningReview && dueMeaningEntries().length) actions.appendChild(el("button", { class: "cta reviewCta", onclick: startMeaningReview }, `要再確認の${Math.min(dueMeaningEntries().length, MEANING_SESSION_SIZE)}語をもう一度解く →`));
-    else if (!isFinal && allSolved() && !finalCleared) {
-      actions.appendChild(el("p", { class: "hint actionHint" }, `意味${state.set.words.length}問のうち${passScore()}問以上でCLEAR`));
-      actions.appendChild(el("button", { class: "cta reviewCta", onclick: startFinal }, "最終チェックへ →"));
-    }
-    else if (!isFinal && finalCleared) actions.appendChild(el("p", { class: "hint actionHint" }, "最終チェックは実施済みです。"));
-    else if (isFinal && !passed) actions.appendChild(el("button", { class: "cta reviewCta", onclick: startFinal }, "もう一度挑戦する"));
-    else if (isFinal && passed) {
+    else if (completedSet) {
       const nextId = nextSetId(state.setId);
       if (nextId) {
         const nextIndex = Object.keys(state.manifest.sets).indexOf(nextId) + 1;

@@ -50,54 +50,62 @@ function words(n) {
   assert.equal(summary.detail, "要復習 1語");
 }
 
-// 5. 全語learned: trueかつ未CLEARなら最終チェック待ち
+// 5. 全語の文中問題に正解すればCLEAR
 {
   const set = { words: words(3) };
   const progress = {
-    units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } },
+    units: {
+      w1: { learned: true, solvedCorrect: true },
+      w2: { learned: true, solvedCorrect: true },
+      w3: { learned: true, solvedCorrect: true },
+    },
     finalCheck: {},
   };
   const summary = GendaibunSetProgress.summarize(set, progress);
-  assert.equal(summary.key, "final-pending");
-  assert.equal(summary.detail, "最終チェック未CLEAR");
+  assert.equal(summary.key, "cleared");
+  assert.equal(summary.solvedCount, 3);
+  assert.equal(summary.detail, "全3語の文中問題を正解");
 }
 
-// 5b. 最終チェック受験済み(未CLEAR)ならBEST N / Mを表示する
+// 5b. 旧最終チェックの記録だけではCLEARにしない
 {
   const set = { words: words(3) };
   const progress = {
     units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } },
-    finalCheck: { lastTriedAt: "2026-08-01T00:00:00.000Z", bestScore: 2 },
+    finalCheck: { cleared: true, bestScore: 3 },
   };
   const summary = GendaibunSetProgress.summarize(set, progress);
-  assert.equal(summary.key, "final-pending");
-  assert.equal(summary.detail, "BEST 2 / 3");
+  assert.equal(summary.key, "in-progress");
 }
 
-// 6. finalCheck.cleared: trueなら他状態より CLEAR ✓ を優先する
+// 6. 要復習があれば、全問正解済みの記録より要復習を優先する
 {
   const set = { words: words(3) };
   const progress = {
-    units: { w1: { learned: true, needsReview: true }, w2: { learned: true }, w3: { learned: true } },
+    units: {
+      w1: { learned: true, solvedCorrect: true, needsReview: true },
+      w2: { learned: true, solvedCorrect: true },
+      w3: { learned: true, solvedCorrect: true },
+    },
     finalCheck: { cleared: true, bestScore: 3 },
     resume: { mode: "learn" },
   };
   const summary = GendaibunSetProgress.summarize(set, progress);
-  assert.equal(summary.key, "cleared");
-  assert.equal(summary.label, "CLEAR ✓");
-  assert.equal(summary.detail, "BEST 3 / 3");
+  assert.equal(summary.key, "review");
+  assert.equal(summary.label, "要復習");
+  assert.equal(summary.detail, "要復習 1語");
 }
 
-// 7. bestScoreがない場合も数値0を返す
+// 7. solvedCountがない保存データでも数値0を返す
 {
   const set = { words: words(3) };
   const progress = {
-    units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } },
+      units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } },
     finalCheck: { cleared: true },
   };
   const summary = GendaibunSetProgress.summarize(set, progress);
-  assert.equal(summary.bestScore, 0);
-  assert.equal(typeof summary.bestScore, "number");
+  assert.equal(summary.solvedCount, 0);
+  assert.equal(typeof summary.solvedCount, "number");
 }
 
 // 8. unitsやfinalCheck自体が欠けた古い保存データでも例外にならない
@@ -108,10 +116,10 @@ function words(n) {
   const summary = GendaibunSetProgress.summarize(set, {});
   assert.equal(summary.key, "untouched");
   assert.equal(summary.learnedCount, 0);
-  assert.equal(summary.bestScore, 0);
+  assert.equal(summary.solvedCount, 0);
 }
 
-// 境界: 全語learned: trueでも1語needsReview: trueなら最終チェック待ちではなく要復習になる
+// 境界: 全語learned: trueでも1語needsReview: trueならCLEARではなく要復習になる
 {
   const set = { words: words(3) };
   const progress = {
@@ -137,7 +145,7 @@ function words(n) {
 // aggregate 2. CLEARと要復習が混在
 {
   const sources = [
-    { set: { words: words(3) }, progress: { units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } }, finalCheck: { cleared: true, bestScore: 3 } } },
+    { set: { words: words(3) }, progress: { units: { w1: { learned: true, solvedCorrect: true }, w2: { learned: true, solvedCorrect: true }, w3: { learned: true, solvedCorrect: true } }, finalCheck: { cleared: true, bestScore: 3 } } },
     { set: { words: words(3) }, progress: { units: { w1: { learned: true, needsReview: true } }, finalCheck: {} } },
     { set: { words: words(3) }, progress: { units: {}, finalCheck: {} } },
   ];
@@ -159,7 +167,7 @@ function words(n) {
 {
   const sources = [
     { set: null, progress: null },
-    { set: { words: words(3) }, progress: { units: { w1: { learned: true }, w2: { learned: true }, w3: { learned: true } }, finalCheck: { cleared: true } } },
+    { set: { words: words(3) }, progress: { units: { w1: { learned: true, solvedCorrect: true }, w2: { learned: true, solvedCorrect: true }, w3: { learned: true, solvedCorrect: true } }, finalCheck: { cleared: true } } },
   ];
   const result = GendaibunSetProgress.aggregate(sources);
   assert.deepEqual(result, { totalSets: 2, clearedSets: 1, inProgressSets: 0, reviewSets: 0 });
