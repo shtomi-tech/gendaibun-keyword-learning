@@ -53,8 +53,7 @@
 ## 4. `antonyms` / `related`
 
 - `antonyms`: 書籍の「反」。`related`: 書籍の「関」。どちらも配列で、無ければ `[]`。
-- **各語は `antonyms[0]` か `related[0]` の少なくとも一方を持つ**（STEP 4 の出題対象になるため）。`check-link-choices.mjs` が検査する。
-- 対になる語がセット内にあってもなくてもよい（例: 対象 → `related:["主体"]`、権威 → `related:["権力"]`)。STEP 4 の誤答は、同セットの見出し語に加えて他語の `antonyms` / `related` からも採る。正解がセット外の語のときは、誤答にもセット外の語を必ず1つ混ぜる（そうしないと「セットに無い語」を選ぶだけで当たってしまう）。`check-link-choices.mjs` がこの条件を検査するので、セット内の語が全員セット外の関係しか持たない、という組み方は避ける。
+- 対義語・関連語は単語カードに表示する補助情報で、両方が空の語も許容する。
 
 ## 5. `example` / `cloze`（例文と空欄）
 
@@ -81,7 +80,6 @@ node --check static/srs.js
 node scripts/check-data.mjs
 node scripts/check-set-choices.mjs
 node scripts/check-context-choices.mjs
-node scripts/check-link-choices.mjs
 node scripts/check-srs.cjs
 node scripts/check-set-progress.cjs
 node scripts/check-study-plan.cjs
@@ -89,7 +87,7 @@ node scripts/check-study-plan.cjs
 
 ### 自動で守られること
 
-`id` の形式と一意性／`keyNo` の昇順／必須フィールドの型／`reading` がひらがな／`level` が1〜5／`meanings` が1文／`notes` が1件以上の非空文字列／`source === "作例"`／`cloze` の空欄数・連続スパン・答えの非露出・見出し語ちょうど1回／STEP 4 の正解（`antonyms[0]` か `related[0]`）と誤答3語の確保／意味四択の重複ガード（`meaning-guard.js`）。
+`id` の形式と一意性／`keyNo` の昇順／必須フィールドの型／`reading` がひらがな／`level` が1〜5／`meanings` が1文／`notes` が1件以上の非空文字列／`source === "作例"`／`cloze` の空欄数・連続スパン・答えの非露出・見出し語ちょうど1回／意味四択の重複ガード（`meaning-guard.js`）。
 
 ### 人手で守ること
 
@@ -97,7 +95,7 @@ node scripts/check-study-plan.cjs
 - 例文が評論の文体で、空欄の前後に語義を判断できる手掛かりが残っていること。
 - 対義語・関連語が書籍の「反」「関」と一致していること。
 - カタカナ別称が定着した呼称であること。
-- UIに関わる変更を伴う場合は実ブラウザで確認（STEP 1〜4・最終チェックの通し、320〜375px幅、コンソールエラー、キーボード操作）。
+- UIに関わる変更を伴う場合は実ブラウザで確認（STEP 1〜3・最終チェックの通し、320〜375px幅、コンソールエラー、キーボード操作）。
 
 ### 意味グループ（`meaning-guard.js`）の追記
 

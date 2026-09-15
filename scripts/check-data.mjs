@@ -55,7 +55,6 @@ for (const [setId, entry] of Object.entries(manifest.sets)) {
 
     if (!Array.isArray(word.antonyms) || !word.antonyms.every((item) => isNonEmptyString(item))) throw new Error(`${where} antonyms must be a string array`);
     if (!Array.isArray(word.related) || !word.related.every((item) => isNonEmptyString(item))) throw new Error(`${where} related must be a string array`);
-    if (!word.antonyms[0] && !word.related[0]) throw new Error(`${where} needs antonyms[0] or related[0] for STEP 4`);
 
     if (!isNonEmptyString(word.example)) throw new Error(`${where} missing example`);
     if (!isNonEmptyString(word.cloze)) throw new Error(`${where} missing cloze`);

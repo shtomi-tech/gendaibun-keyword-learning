@@ -19,13 +19,11 @@ const GendaibunSetProgress = (() => {
 
     let learnedCount = 0;
     let reviewCount = 0;
-    let linkedCount = 0;
     for (const word of words) {
       const unit = units[word.id];
       if (!unit) continue;
       if (unit.learned) learnedCount++;
       if (unit.needsReview) reviewCount++;
-      if (typeof unit.link === "boolean") linkedCount++;
     }
 
     let key;
@@ -48,7 +46,6 @@ const GendaibunSetProgress = (() => {
       total,
       learnedCount,
       reviewCount,
-      linkedCount,
       bestScore,
       hasResume,
       detail,
@@ -102,7 +99,7 @@ const GendaibunSetProgress = (() => {
 
       const isCurrent = Boolean(resume && resume.batchIndex === index && ["flash", "meaning", "wrongReview"].includes(resume.stage));
       const isPastMeaning = Boolean(resume && (resume.batchIndex > index ||
-        (resume.batchIndex === index && ["wrongReview", "context", "link"].includes(resume.stage))));
+        (resume.batchIndex === index && ["wrongReview", "context"].includes(resume.stage))));
 
       let key;
       let label;

@@ -97,12 +97,19 @@ const GendaibunKeywordApp = (() => {
       if (saved && typeof saved === "object") {
         const progress = { units: {}, finalCheck: {}, ...saved };
         const dataVersion = set.meta.dataVersion || 1;
+        let changed = false;
         if (progress.dataVersion !== dataVersion) {
           progress.dataVersion = dataVersion;
           progress.finalCheck = {};
           delete progress.resume;
-          localStorage.setItem(progressKey(setId), JSON.stringify(progress));
+          changed = true;
         }
+        // 削除した STEP 4 の途中保存は再開させず、最終チェックへ戻す。
+        if (progress.resume?.stage === "link") {
+          delete progress.resume;
+          changed = true;
+        }
+        if (changed) localStorage.setItem(progressKey(setId), JSON.stringify(progress));
         return progress;
       }
     } catch (_) { /* 壊れた記録は上書きせず、今回だけ空状態で表示する。 */ }
@@ -462,7 +469,6 @@ const GendaibunKeywordApp = (() => {
       meaning: resume.mode === "final" ? "最終チェック" : resume.mode === "meaningReview" ? "意味だけ復習" : "STEP 2 確かめる",
       wrongReview: "誤答確認",
       context: resume.mode === "review" ? "誤答復習" : "STEP 3 文中で解く",
-      link: "STEP 4 つながり",
       done: "完了",
     }[resume.stage] || "学習中";
     return `${title}${block}・${stage}`;
@@ -493,7 +499,7 @@ const GendaibunKeywordApp = (() => {
       home.appendChild(el("section", { class: "card hero" },
         el("p", { class: "label" }, "学習の流れ"),
         el("h2", {}, "キーワードを「覚えてから解く」"),
-        el("p", { class: "hint" }, `${total}語を${BATCH_SIZE}語ずつ、覚える → 意味を確かめる、の順に進めてから、文中問題と対義語・関連語の問題を解きます。`),
+        el("p", { class: "hint" }, `${total}語を${BATCH_SIZE}語ずつ、覚える → 意味を確かめる、の順に進めてから、文中問題を解きます。`),
       ));
     }
 
@@ -532,7 +538,6 @@ const GendaibunKeywordApp = (() => {
     card.appendChild(el("div", { class: "stats" },
       stat(learned, total, "文中回答済み"),
       stat(summary.reviewCount, total, "復習対象"),
-      stat(summary.linkedCount, total, "つながり回答済み", { secondary: true }),
       stat(solved, total, "正解確認済み", { secondary: true }),
       stat(summary.bestScore, total, "最終 BEST", { secondary: true }),
     ));
@@ -907,9 +912,6 @@ const GendaibunKeywordApp = (() => {
       batchIndex, batchCount,
       meaningOrder: shuffle(batchIds), meaningIndex: 0, meaningCorrect: 0,
       contextOrder: shuffle(ids), contextIndex: 0, contextCorrect: 0,
-      // STEP 4 は対義語も関連語も持たない語を出題できない。開始時に除いておく
-      // （描画中に読み飛ばすと、最後の語だった場合に再描画が入れ子になる）。
-      linkOrder: shuffle(ids.filter((id) => linkTarget(wordById(id)).answer)), linkIndex: 0, linkCorrect: 0,
       wrongMeaningIds: [], reviewedIds: [], answered: false, choices: null,
     };
     lastStepKey = stepKey();
@@ -976,7 +978,6 @@ const GendaibunKeywordApp = (() => {
     else if (session.stage === "meaning") renderQuiz(panel, "meaning");
     else if (session.stage === "wrongReview") renderWrongReview(panel);
     else if (session.stage === "context") renderQuiz(panel, "context");
-    else if (session.stage === "link") renderLink(panel);
     else renderDone(panel);
   }
 
@@ -988,7 +989,6 @@ const GendaibunKeywordApp = (() => {
       return `意味確認 ${session.meaningIndex + 1} / ${session.meaningOrder.length}${block}`;
     }
     if (session.stage === "context") return `文中問題 ${session.contextIndex + 1} / ${session.contextOrder.length}`;
-    if (session.stage === "link") return `つながり ${session.linkIndex + 1} / ${session.linkOrder.length}`;
     if (session.stage === "wrongReview") {
       const total = session.wrongMeaningIds.length;
       return `誤答確認 ${Math.min(session.reviewedIds.length + 1, total)} / ${total}`;
@@ -1005,7 +1005,6 @@ const GendaibunKeywordApp = (() => {
       meaning: `STEP 2　確かめる（第${session.batchIndex + 1}ブロック）`,
       wrongReview: "間違えた語を確認",
       context: "STEP 3　文中で解く",
-      link: "STEP 4　つながり",
       done: "セット完了",
     }[session.stage];
   }
@@ -1015,11 +1014,11 @@ const GendaibunKeywordApp = (() => {
   }
 
   function stepBar() {
-    const steps = session.mode === "learn" ? ["flash", "meaning", "wrongReview", "context", "link"]
+    const steps = session.mode === "learn" ? ["flash", "meaning", "wrongReview", "context"]
       : session.mode === "meaningReview" ? ["meaning", "wrongReview"]
         : [session.mode === "final" ? "meaning" : "context"];
     const block = session.mode === "learn" ? ` ${session.batchIndex + 1}/${session.batchCount}` : "";
-    const labels = { flash: `1 覚える${block}`, meaning: session.mode === "final" ? "最終チェック" : session.mode === "meaningReview" ? "意味だけ復習" : `2 確かめる${block}`, wrongReview: "必要なら復習", context: "3 解く", link: "4 つながり" };
+    const labels = { flash: `1 覚える${block}`, meaning: session.mode === "final" ? "最終チェック" : session.mode === "meaningReview" ? "意味だけ復習" : `2 確かめる${block}`, wrongReview: "必要なら復習", context: "3 解く" };
     const current = steps.indexOf(session.stage);
     const key = stepKey();
     const changed = key !== lastStepKey;
@@ -1239,140 +1238,14 @@ const GendaibunKeywordApp = (() => {
       session.stage = "flash";
     } else if (kind === "meaning" && session.wrongMeaningIds.length) session.stage = "wrongReview";
     else if (kind === "meaning") session.stage = (session.mode === "final" || session.mode === "meaningReview") ? "done" : "context";
-    else session.stage = session.mode === "learn" ? "link" : "done";
-    if (session.stage === "link" && !session.linkOrder.length) session.stage = "done";
-    if (session.stage === "link") { session.linkIndex = 0; session.linkCorrect = 0; }
+    else session.stage = "done";
     renderSession();
     $(".askWord, .meaningExample, .cloze")?.focus({ preventScroll: true });
   }
 
-  // STEP 4「つながり」。各語の対義語（antonyms[0]）を、なければ関連語（related[0]）を正解とし、
-  // 誤答は同セット内の他語の見出し語から採る。最終チェックの合否には算入しない。
-  function linkTarget(word) {
-    const antonym = Array.isArray(word.antonyms) ? word.antonyms.find(Boolean) : null;
-    if (antonym) return { answer: antonym, kind: "antonym" };
-    const related = Array.isArray(word.related) ? word.related.find(Boolean) : null;
-    if (related) return { answer: related, kind: "related" };
-    return { answer: null, kind: null };
-  }
-
-  // 誤答は同セットの見出し語に加えて、他語の対義語・関連語からも採る。
-  // 見出し語だけを誤答にすると、正解がセット外の語（権威→権力 など）のとき
-  // 「セットに無い語」を選ぶだけで当たってしまうため、正解がセット外なら
-  // 誤答にもセット外の語を必ず1つ混ぜる。
-  function linkChoiceSet(word, answer) {
-    const headwords = new Set(state.set.words.map((other) => other.headword));
-    const excluded = new Set([word.headword, answer, ...(word.antonyms || []), ...(word.related || [])]);
-    const pool = [];
-    state.set.words.forEach((other) => {
-      const values = other.id === word.id ? [] : [other.headword];
-      values.push(...(other.antonyms || []), ...(other.related || []));
-      values.forEach((value) => {
-        if (!excluded.has(value) && !pool.includes(value)) pool.push(value);
-      });
-    });
-    const picks = [];
-    if (!headwords.has(answer)) {
-      const outsiders = pool.filter((value) => !headwords.has(value));
-      if (outsiders.length) picks.push(shuffle(outsiders)[0]);
-    }
-    shuffle(pool).forEach((value) => {
-      if (picks.length < 3 && !picks.includes(value)) picks.push(value);
-    });
-    return shuffle([answer, ...picks]);
-  }
-
-  function renderLink(panel) {
-    const order = session.linkOrder;
-    const index = session.linkIndex;
-    const word = wordForSession(order[index]);
-    const { answer, kind } = linkTarget(word);
-    if (!answer) {
-      // 対義語も関連語も持たない語は出題対象から外す（第1セットでは発生しない）。
-      if (index === order.length - 1) { session.stage = "done"; renderSession(); return; }
-      session.linkIndex++;
-      renderLink(panel);
-      return;
-    }
-    if (!Array.isArray(session.choices) || session.choices.length !== 4 || !session.choices.includes(answer)) {
-      session.choices = linkChoiceSet(word, answer);
-    }
-
-    const entryKey = `link:link:${order[index]}`;
-    const isNewEntry = entryKey !== lastQuizEntryKey;
-    lastQuizEntryKey = entryKey;
-
-    const box = el("section", { class: `quiz${session.answered ? " quiz--answered" : ""}${!session.answered && isNewEntry ? " is-entering" : ""}` },
-      el("p", { class: "label linkLabel" }, kind === "antonym" ? "対になる語を選べ" : "関わりの深い語を選べ"),
-      el("p", { class: "cloze linkPrompt", tabindex: "-1" },
-        el("span", { class: "linkPromptHead" }, `${word.headword}【${word.reading}】`),
-        kind === "antonym" ? "　と 対になる 語は？" : "　と 関わりの深い 語は？"),
-    );
-    const choices = el("div", { class: "choices" });
-    session.choices.forEach((choice, choiceIndex) => {
-      const button = el("button", { class: "choice" },
-        el("span", { class: "choiceNo" }, choiceIndex + 1),
-        el("span", {}, choice),
-      );
-      if (session.answered) {
-        button.disabled = true;
-        if (choice === answer) button.classList.add("correct");
-        else if (choice === session.picked) button.classList.add("wrong");
-      }
-      button.addEventListener("click", () => answerLink(choice, answer));
-      choices.appendChild(button);
-    });
-    box.appendChild(choices);
-    if (session.answered) {
-      const isCorrect = session.picked === answer;
-      const linkText = [
-        Array.isArray(word.antonyms) && word.antonyms.length ? `対義語：${word.antonyms.join("・")}` : null,
-        Array.isArray(word.related) && word.related.length ? `関連語：${word.related.join("・")}` : null,
-      ].filter(Boolean).join("　／　");
-      box.appendChild(el("div", { class: `feedback ${isCorrect ? "ok" : "ng"}`, role: "status", "aria-live": "polite", "aria-atomic": "true", tabindex: "-1" },
-        el("div", { class: "feedbackSummary" },
-          el("h3", {}, isCorrect ? "○ 正解" : "× 不正解"),
-          el("p", {}, `${word.headword}【${word.reading}】　${linkText}`),
-        ),
-        el("div", { class: "quizNextAction" },
-          el("button", { class: "cta next", onclick: nextLink }, index === order.length - 1 ? "結果を見る →" : "次の問題 →"),
-        ),
-      ));
-    }
-    panel.appendChild(box);
-  }
-
-  function answerLink(picked, answer) {
-    if (session.answered) return;
-    session.answered = true;
-    session.picked = picked;
-    const isCorrect = picked === answer;
-    if (isCorrect) session.linkCorrect++;
-    const id = session.linkOrder[session.linkIndex];
-    const u = unit(id);
-    u.link = isCorrect;
-    appendHistory({ kind: "link", wordId: id, result: isCorrect ? "correct" : "wrong" });
-    saveProgress();
-    renderSession();
-    const feedback = $(".feedback");
-    feedback?.focus({ preventScroll: true });
-    feedback?.scrollIntoView({ block: "nearest" });
-  }
-
-  function nextLink() {
-    const last = session.linkIndex === session.linkOrder.length - 1;
-    session.answered = false;
-    session.picked = null;
-    session.choices = null;
-    if (!last) session.linkIndex++;
-    else session.stage = "done";
-    renderSession();
-    $(".linkPrompt, .cloze")?.focus({ preventScroll: true });
-  }
-
   function handleQuizKeydown(event) {
     if (!session) return;
-    if (session.stage !== "meaning" && session.stage !== "context" && session.stage !== "link") return;
+    if (session.stage !== "meaning" && session.stage !== "context") return;
     if (event.repeat || event.isComposing || event.keyCode === 229) return;
     if (event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
     if (event.target instanceof Element && event.target.closest("input, textarea, select, button, a, [contenteditable]")) return;
@@ -1473,9 +1346,6 @@ const GendaibunKeywordApp = (() => {
       el("h2", { class: celebrateFirstClear ? "firstClear" : "" }, isFinal ? (passed ? `${state.set.meta.title} CLEAR` : "最終チェック完了") : isMeaningReview ? "意味だけ復習が完了しました" : (session.mode === "review" ? "誤答復習が完了しました" : "通常学習が完了しました")),
       el("p", { class: "hint" }, isFinal ? `${passScore()}/${state.set.words.length}問以上でCLEAR` : isMeaningReview ? "正解した語は次の復習日へ、誤答した語は要再確認へ戻りました。" : (reviewIds().length ? `復習対象があと${reviewIds().length}語あります。` : "全語の文中問題に正解しました。")),
     ));
-    if (!isFinal && !isMeaningReview && session.mode === "learn" && Number.isInteger(session.linkCorrect) && session.linkOrder?.length) {
-      panel.appendChild(el("p", { class: "hint doneLinkNote" }, `STEP 4 つながり：${session.linkCorrect} / ${session.linkOrder.length} 正解`));
-    }
     const actions = el("div", { class: "actions doneActions" });
     if (!isMeaningReview && reviewIds().length) actions.appendChild(el("button", { class: "cta reviewCta", onclick: startReview }, `間違えた${reviewIds().length}語を復習する →`));
     else if (isMeaningReview && dueMeaningEntries().length) actions.appendChild(el("button", { class: "cta reviewCta", onclick: startMeaningReview }, `要再確認の${Math.min(dueMeaningEntries().length, MEANING_SESSION_SIZE)}語をもう一度解く →`));

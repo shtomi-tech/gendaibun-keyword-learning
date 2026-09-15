@@ -39,7 +39,6 @@ jobs:
           node scripts/check-data.mjs
           node scripts/check-set-choices.mjs
           node scripts/check-context-choices.mjs
-          node scripts/check-link-choices.mjs
           node scripts/check-srs.cjs
           node scripts/check-fsrs-vendor.cjs
           node scripts/check-response-time-ui.cjs
