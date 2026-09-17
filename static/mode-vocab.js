@@ -330,7 +330,7 @@ const GendaibunKeywordApp = (() => {
     slot.appendChild(el("span", { class: "shareStatusText" }, message));
   }
 
-  function applyCloudProgress(value) {
+  function applyCloudProgress(value, { reason } = {}) {
     if (!value || typeof value !== "object") return;
     const cloudPlan = value._meta && value._meta.studyPlanV1;
     pendingCloudStudyPlan = cloudPlan && typeof cloudPlan === "object" && !Array.isArray(cloudPlan) ? cloudPlan : null;
@@ -344,6 +344,12 @@ const GendaibunKeywordApp = (() => {
       if (state.manifest.sets[setId] && progress && typeof progress === "object") {
         localStorage.setItem(PROGRESS_PREFIX + setId, JSON.stringify(progress));
       }
+    }
+    if (!reason || reason === "init" || !state.set) return;
+    // 他端末の保存を取り込んだ（タブ復帰・保存競合）。メモリ上の進捗も読み直す。
+    state.progress = loadProgressFor(state.setId, state.set);
+    if (!session && !$("#homePanel").classList.contains("hide")) {
+      loadReviewPool().then(() => renderHome()).catch((error) => console.error(error));
     }
   }
 
@@ -1368,7 +1374,7 @@ const GendaibunKeywordApp = (() => {
         if (!response.ok) throw new Error(`manifest: HTTP ${response.status}`);
         return response.json();
       });
-      cloud = GendaibunCloud.create({
+      cloud = createCloud({
         appId: APP_ID,
         getPatch: () => ({
           datasetId: state.setId,
