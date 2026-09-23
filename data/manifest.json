@@ -20,6 +20,14 @@
     "gk-set-05": {
       "label": "第5セット　科学とテクノロジー",
       "dataUrl": "data/set-05.json"
+    },
+    "gk-set-06": {
+      "label": "第6セット　科学・表現・文脈",
+      "dataUrl": "data/set-06.json"
+    },
+    "gk-set-07": {
+      "label": "第7セット　記号・表象・言語",
+      "dataUrl": "data/set-07.json"
     }
   }
 }
