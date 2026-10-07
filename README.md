@@ -73,7 +73,7 @@ py -3 -m http.server 8063 --bind 127.0.0.1
 
 ## 公開
 
-main へ push すると `.github/workflows/deploy.yml` が検査 → `_site/` 作成 → Cloudflare Workers と GitHub Pages の両方へデプロイします。
+main へ push すると `.github/workflows/pages.yml` が検査 → `_site/` 作成 → Cloudflare Workers と GitHub Pages の両方へデプロイします。
 
 - Cloudflare は Worker スクリプトなしの静的アセット配信です（`wrangler.jsonc`、`assets.directory = ./_site`）。
 - 必要な Actions シークレット: `CLOUDFLARE_API_TOKEN`（Workers Scripts の編集権限）と `CLOUDFLARE_ACCOUNT_ID`。portal の `student-ledger` と同じ値でよい。未設定のときは Cloudflare のデプロイだけ警告を出して飛ばします。
