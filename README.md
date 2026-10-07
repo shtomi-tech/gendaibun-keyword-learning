@@ -4,7 +4,9 @@
 
 収録目標は210語（10語 × 21セット）。このリポジトリの現状は**第1〜7セット（書籍番号1〜70）**です。
 
-公開版: https://shtomi-tech.github.io/gendaibun-keyword-learning/
+公開版: https://gendaibun-keyword-learning.shtomi0913.workers.dev/ （Cloudflare Workers）
+
+旧公開版 https://shtomi-tech.github.io/gendaibun-keyword-learning/ も、配布済みリンクのため当面は同じ内容で並行公開しています（[公開](#公開)）。
 
 ## 起動
 
@@ -68,6 +70,14 @@ py -3 -m http.server 8063 --bind 127.0.0.1
 - このアプリの進捗は `app_progress` の `app = gendaibun-keyword-learning` に保存され、他アプリとは混ざらない。
 - 公開版の `static/config.json` は GitHub Actions の `SUPABASE_URL` / `SUPABASE_ANON_KEY`（**anon キーのみ。`service_role` は配布しない**）から `scripts/write-config.mjs` が生成する。シークレット未設定なら `config.json` は空になり、匿名ローカル保存へ自動フォールバックする。
 - `?s=` / `?t=` の無い通常アクセスでは、これまでどおり `localStorage` のみで動く。
+
+## 公開
+
+main へ push すると `.github/workflows/pages.yml` が検査 → `_site/` 作成 → Cloudflare Workers と GitHub Pages の両方へデプロイします。
+
+- Cloudflare は Worker スクリプトなしの静的アセット配信です（`wrangler.jsonc`、`assets.directory = ./_site`）。
+- 必要な Actions シークレット: `CLOUDFLARE_API_TOKEN`（Workers Scripts の編集権限）と `CLOUDFLARE_ACCOUNT_ID`。portal の `student-ledger` と同じ値でよい。未設定のときは Cloudflare のデプロイだけ警告を出して飛ばします。
+- `localStorage` はドメインごとに別です。github.io で匿名利用していた進捗は workers.dev に引き継がれません。生徒専用URL（`?s=&t=`）の進捗はクラウドにあるので、どちらのURLでも同じものが読めます。
 
 ## 本リポジトリの範囲外
 

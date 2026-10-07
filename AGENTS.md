@@ -45,6 +45,7 @@ UIに関わる変更は実ブラウザ（`8063`）で、STEP 1〜3とセット�
 
 `static/cloud.js` は `kobun-vocab-learning` と同じ共通契約（`portal/student_progress_contract.md`）で有効。`mount()` が `GendaibunCloud.create({ appId: "gendaibun-keyword-learning" })` を呼び、生徒専用URL（`?s=&t=`）のときだけ `app_auth_student` → `app_load_progress` → `app_save_progress_dataset` を実行する。
 
+- 公開は Cloudflare Workers（静的アセット、`wrangler.jsonc`）が本番。GitHub Pages は配布済みリンクのため並行で残している。どちらも `.github/workflows/pages.yml` が同じ `_site/` から出す。
 - 公開版の `static/config.json` は Actions の `SUPABASE_URL` / `SUPABASE_ANON_KEY`（anon キーのみ）から `scripts/write-config.mjs` が生成する。`config.json` は `.gitignore` 済み。
 - シークレット未設定なら `config.json` は空になり、匿名 `localStorage` へ自動フォールバックする。契約変更（新RPC・スキーマ）は `portal` 側の正本に従う。
 
