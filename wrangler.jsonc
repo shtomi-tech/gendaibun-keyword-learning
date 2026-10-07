@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers の静的アセットとして公開する（Worker スクリプトなし）。
+  // _site/ は GitHub Actions の「Prepare static files」で作る。ローカルで試すときも先に同じ手順で _site/ を作る。
+  // 公開URL: https://gendaibun-keyword-learning.<workers.dev サブドメイン>.workers.dev/
+  "name": "gendaibun-keyword-learning",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./_site"
+  }
+}
