@@ -52,6 +52,14 @@
     "gk-set-13": {
       "label": "第13セット　近代社会・政治と経済",
       "dataUrl": "data/set-13.json"
+    },
+    "gk-set-14": {
+      "label": "第14セット　人間観・思想と近代",
+      "dataUrl": "data/set-14.json"
+    },
+    "gk-set-15": {
+      "label": "第15セット　現代社会・環境と多様性",
+      "dataUrl": "data/set-15.json"
     }
   }
 }
