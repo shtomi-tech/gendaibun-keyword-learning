@@ -56,7 +56,7 @@ py -3 -m http.server 8063 --bind 127.0.0.1
 | --- | --- |
 | `id` | `gkNN-XXX`（全セットで一意） |
 | `keyNo` | 書籍のキーワード番号 |
-| `headword` / `reading` / `alias?` | 見出し語（漢字表記）／読み（ひらがな）／カタカナ別称（任意） |
+| `headword` / `reading` / `alias?` | 見出し語（漢字表記）／読み（ひらがな）／定着した別称・別表記（任意） |
 | `level` | 難易度 1〜5 |
 | `meanings` | 語義（1文） |
 | `notes` | 解説・補足（1件以上） |

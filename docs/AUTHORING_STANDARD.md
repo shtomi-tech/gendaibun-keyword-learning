@@ -34,8 +34,8 @@
 ```
 
 - `id`: `gkNN-XXX`。`NN` はセット番号、`XXX` は書籍のキーワード番号を3桁ゼロ詰め。全セットで一意。
-- `keyNo`: 書籍のキーワード番号。セット内で昇順。
-- `headword`: 漢字表記の見出し語。`reading`: ひらがなの読み。`alias`: カタカナ別称（`コスモス`・`カオス` など、定着しているものだけ。無ければフィールドごと省く）。
+- `keyNo`: 書籍のキーワード番号。第Nセットは `(N - 1) × 10 + 1` から `N × 10` の連続10番号を昇順で収録する。
+- `headword`: 漢字表記の見出し語。`reading`: ひらがなの読み。`alias`: 定着した別称・別表記（`コスモス`・`自民族中心主義` など。漢字・カタカナを問わず、無ければフィールドごと省く）。
 - `level`: 難易度 1〜5（1がやさしい）。
 - `meta`: `{ "id": "gk-set-NN", "title": "第N セット　<主題>", "count": 10, "dataVersion": 1 }`。`dataVersion` は据え置く（上げると保存済みの進捗と途中位置が消える）。
 
@@ -78,6 +78,8 @@ node --check static/meaning-guard.js
 node --check static/set-progress.js
 node --check static/srs.js
 node scripts/check-data.mjs
+node scripts/check-data-contract.mjs
+node scripts/check-meaning-guard.cjs
 node scripts/check-set-choices.mjs
 node scripts/check-context-choices.mjs
 node scripts/check-srs.cjs
@@ -87,16 +89,18 @@ node scripts/check-study-plan.cjs
 
 ### 自動で守られること
 
-`id` の形式と一意性／`keyNo` の昇順／必須フィールドの型／`reading` がひらがな／`level` が1〜5／`meanings` が1文／`notes` が1件以上の非空文字列／`source === "作例"`／`cloze` の空欄数・連続スパン・答えの非露出・見出し語ちょうど1回／意味四択の重複ガード（`meaning-guard.js`）。
+1セット10語／セット番号と `id` の `NN` の一致／`keyNo` と `id` の `XXX` の一致／`id` の形式と一意性／`keyNo` の期待範囲・連続性・昇順／必須フィールドの型／`reading` がひらがな／`level` が1〜5／`meanings` が1文／`notes` が1件以上の非空文字列／`source === "作例"`／`cloze` の空欄数・連続スパン・答えの非露出・見出し語ちょうど1回／意味四択の重複ガード（`meaning-guard.js`）。
 
 ### 人手で守ること
 
 - 語義が学説上妥当で、書籍の説明と食い違っていないこと（分かれる語義は「要確認」として残す）。
 - 例文が評論の文体で、空欄の前後に語義を判断できる手掛かりが残っていること。
 - 対義語・関連語が書籍の「反」「関」と一致していること。
-- カタカナ別称が定着した呼称であること。
+- 別称・別表記が定着した呼称であること。
 - UIに関わる変更を伴う場合は実ブラウザで確認（STEP 1〜3・セット完了までの通し、320〜375px幅、コンソールエラー、キーボード操作）。
 
 ### 意味グループ（`meaning-guard.js`）の追記
 
 新しいセットで「字面は違うが言い換えが利く」語の組が出たら、`static/meaning-guard.js` の `meaningFamilies` に正規表現を1本足す。同じ族の語義を1問の選択肢に2つ以上出さないための仕組みで、族が0語・1語にしか当たらないうちは無害。既存の判定ロジックは変更しない。
+
+近接概念や包含関係だけでは意味グループへ登録しない。文化／文明、自我／アイデンティティなどは、区別できる語義と例文の手掛かりを用意して同時出題できるようにする。意味グループは文中四択にも適用されるため、登録前にセット内の候補ペアを確認する。

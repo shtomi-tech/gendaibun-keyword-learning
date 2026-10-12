@@ -32,6 +32,8 @@ node --check static/meaning-guard.js
 node --check static/set-progress.js
 node --check static/srs.js
 node scripts/check-data.mjs
+node scripts/check-data-contract.mjs
+node scripts/check-meaning-guard.cjs
 node scripts/check-set-choices.mjs
 node scripts/check-context-choices.mjs
 node scripts/check-srs.cjs

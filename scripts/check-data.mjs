@@ -27,8 +27,12 @@ const isNonEmptyString = (value) => typeof value === "string" && value.trim().le
 const isStringArray = (value) => Array.isArray(value) && value.every((item) => typeof item === "string" && item.trim().length > 0);
 
 for (const [setId, entry] of Object.entries(manifest.sets)) {
+  const setMatch = /^gk-set-(\d{2})$/.exec(setId);
+  if (!setMatch || Number(setMatch[1]) < 1) throw new Error(`${setId}: invalid set id`);
+  const setNumber = Number(setMatch[1]);
   const data = JSON.parse(fs.readFileSync(new URL(`../${entry.dataUrl}`, import.meta.url)));
   if (data.meta.id !== setId) throw new Error(`${setId}: meta.id mismatch`);
+  if (!Array.isArray(data.words) || data.words.length !== 10) throw new Error(`${setId}: must contain exactly 10 words`);
   if (data.meta.count !== data.words.length) throw new Error(`${setId}: count mismatch`);
   if (!Number.isInteger(data.meta.dataVersion) || data.meta.dataVersion < 1) throw new Error(`${setId}: invalid dataVersion`);
 
@@ -37,12 +41,17 @@ for (const [setId, entry] of Object.entries(manifest.sets)) {
     const where = `${setId}: ${word.id || `#${position + 1}`}`;
 
     if (!idPattern.test(word.id || "")) throw new Error(`${where} id must match gkNN-XXX`);
+    const [, wordSetNumber, wordKeyNo] = /^gk(\d{2})-(\d{3})$/.exec(word.id);
+    if (Number(wordSetNumber) !== setNumber) throw new Error(`${where} id set number must match ${setId}`);
     if (ids.has(word.id)) throw new Error(`${setId}: duplicate id ${word.id}`);
     ids.add(word.id);
     if (idsAcrossSets.has(word.id)) throw new Error(`cross-set duplicate id ${word.id}`);
     idsAcrossSets.add(word.id);
 
     if (!Number.isInteger(word.keyNo) || word.keyNo < 1) throw new Error(`${where} keyNo must be a positive integer`);
+    if (Number(wordKeyNo) !== word.keyNo) throw new Error(`${where} id keyword number must match keyNo`);
+    const expectedKeyNo = (setNumber - 1) * 10 + position + 1;
+    if (word.keyNo !== expectedKeyNo) throw new Error(`${where} keyNo must be ${expectedKeyNo} at position ${position + 1}`);
     if (!isNonEmptyString(word.headword)) throw new Error(`${where} missing headword`);
     if (!isNonEmptyString(word.reading)) throw new Error(`${where} missing reading`);
     if (!/^[ぁ-ゖー]+$/u.test(word.reading)) throw new Error(`${where} reading must be hiragana`);
