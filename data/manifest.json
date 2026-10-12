@@ -28,6 +28,18 @@
     "gk-set-07": {
       "label": "第7セット　記号・表象・言語",
       "dataUrl": "data/set-07.json"
+    },
+    "gk-set-08": {
+      "label": "第8セット　両義・文化・制度",
+      "dataUrl": "data/set-08.json"
+    },
+    "gk-set-09": {
+      "label": "第9セット　宗教・民族・哲学",
+      "dataUrl": "data/set-09.json"
+    },
+    "gk-set-10": {
+      "label": "第10セット　心身・認識・自己",
+      "dataUrl": "data/set-10.json"
     }
   }
 }
