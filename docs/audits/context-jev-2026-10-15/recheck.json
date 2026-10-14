@@ -1,0 +1,2909 @@
+[
+  {
+    "id": "gk01-001",
+    "intended": "普遍",
+    "alternative": "秩序",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "科学は個々の観察から出発して、だれにとっても成り立つ（　）を求めようとする営みである。",
+        "options": [
+          "対象",
+          "普遍",
+          "権威",
+          "秩序"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "対象": null,
+            "普遍": null,
+            "権威": null,
+            "秩序": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "普遍",
+          "confidence": 1.0,
+          "probabilities": {
+            "対象": 0.0,
+            "普遍": 1.0,
+            "権威": 0.0,
+            "秩序": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.2
+        }
+      },
+      "usage": {
+        "input_tokens": 529,
+        "output_tokens": 70
+      }
+    }
+  },
+  {
+    "id": "gk01-010",
+    "intended": "権威",
+    "alternative": "秩序",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "多くの人が長らく疑わずに受け入れてきた（　）も、その根拠をあらためて問われると意外にもろい。",
+        "options": [
+          "偶然",
+          "対象",
+          "権威",
+          "秩序"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "偶然": null,
+            "対象": null,
+            "権威": null,
+            "秩序": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "権威",
+          "confidence": 0.84,
+          "probabilities": {
+            "偶然": 0.01,
+            "対象": 0.05,
+            "権威": 0.88,
+            "秩序": 0.06
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.45
+        }
+      },
+      "usage": {
+        "input_tokens": 533,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk02-011",
+    "intended": "権力",
+    "alternative": "イデオロギー",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "近代の国家は、むき出しの暴力によらずに人々を従わせる（　）の仕組みを、法という形で整えてきた。",
+        "options": [
+          "イデオロギー",
+          "パラドックス",
+          "権力",
+          "虚構"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "イデオロギー": null,
+            "パラドックス": null,
+            "権力": null,
+            "虚構": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "権力",
+          "confidence": 0.67,
+          "probabilities": {
+            "イデオロギー": 0.23,
+            "パラドックス": 0.0,
+            "権力": 0.75,
+            "虚構": 0.02
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.36
+        }
+      },
+      "usage": {
+        "input_tokens": 550,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk02-017",
+    "intended": "倒錯",
+    "alternative": "パラドックス",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "人のために作られたはずの制度が人を苦しめるという（　）が、現代の組織には起こりやすい。",
+        "options": [
+          "イデオロギー",
+          "パラドックス",
+          "倒錯",
+          "虚構"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "イデオロギー": null,
+            "パラドックス": null,
+            "倒錯": null,
+            "虚構": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "パラドックス",
+          "confidence": 0.89,
+          "probabilities": {
+            "イデオロギー": 0.0,
+            "パラドックス": 0.92,
+            "倒錯": 0.08,
+            "虚構": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.38
+        }
+      },
+      "usage": {
+        "input_tokens": 544,
+        "output_tokens": 81
+      }
+    }
+  },
+  {
+    "id": "gk02-018",
+    "intended": "パラドックス",
+    "alternative": "イデオロギー",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "豊かになるほど人は満たされなさを募らせるという（　）が、消費社会を覆っている。",
+        "options": [
+          "イデオロギー",
+          "パラドックス",
+          "倒錯",
+          "虚構"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "イデオロギー": null,
+            "パラドックス": null,
+            "倒錯": null,
+            "虚構": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "パラドックス",
+          "confidence": 0.55,
+          "probabilities": {
+            "イデオロギー": 0.26,
+            "パラドックス": 0.66,
+            "倒錯": 0.04,
+            "虚構": 0.04
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.44
+        }
+      },
+      "usage": {
+        "input_tokens": 539,
+        "output_tokens": 81
+      }
+    }
+  },
+  {
+    "id": "gk02-019",
+    "intended": "虚構",
+    "alternative": "権力",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "国家も貨幣も、人々が共有することではじめて力をもつ（　）だと論じる見方がある。",
+        "options": [
+          "イデオロギー",
+          "パラドックス",
+          "権力",
+          "虚構"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "イデオロギー": null,
+            "パラドックス": null,
+            "権力": null,
+            "虚構": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "虚構",
+          "confidence": 0.93,
+          "probabilities": {
+            "イデオロギー": 0.03,
+            "パラドックス": 0.0,
+            "権力": 0.02,
+            "虚構": 0.95
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.4
+        }
+      },
+      "usage": {
+        "input_tokens": 542,
+        "output_tokens": 78
+      }
+    }
+  },
+  {
+    "id": "gk02-020",
+    "intended": "イデオロギー",
+    "alternative": "権力",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "中立を装う主張の底にも、その時代を支配する（　）が働いていることがある。",
+        "options": [
+          "イデオロギー",
+          "パラドックス",
+          "権力",
+          "虚構"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "イデオロギー": null,
+            "パラドックス": null,
+            "権力": null,
+            "虚構": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "イデオロギー",
+          "confidence": 0.83,
+          "probabilities": {
+            "イデオロギー": 0.87,
+            "パラドックス": 0.0,
+            "権力": 0.13,
+            "虚構": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.45
+        }
+      },
+      "usage": {
+        "input_tokens": 538,
+        "output_tokens": 82
+      }
+    }
+  },
+  {
+    "id": "gk03-021",
+    "intended": "疎外",
+    "alternative": "概念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "働くことが生きる喜びから切り離されていくところに、近代の（　）が生まれる。",
+        "options": [
+          "一元",
+          "二元",
+          "概念",
+          "疎外"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "概念": null,
+            "疎外": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "疎外",
+          "confidence": 0.61,
+          "probabilities": {
+            "一元": 0.0,
+            "二元": 0.28,
+            "概念": 0.01,
+            "疎外": 0.71
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.3
+        }
+      },
+      "usage": {
+        "input_tokens": 523,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk03-022",
+    "intended": "概念",
+    "alternative": "観念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "動物という（　）は、目の前の一匹一匹の違いを取り去ったところにはじめて成り立つ。",
+        "options": [
+          "一元",
+          "二元",
+          "概念",
+          "観念"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "概念": null,
+            "観念": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "概念",
+          "confidence": 0.91,
+          "probabilities": {
+            "一元": 0.01,
+            "二元": 0.0,
+            "概念": 0.93,
+            "観念": 0.06
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.46
+        }
+      },
+      "usage": {
+        "input_tokens": 524,
+        "output_tokens": 69
+      }
+    }
+  },
+  {
+    "id": "gk03-023",
+    "intended": "観念",
+    "alternative": "概念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "会ったこともない相手について、私たちは勝手な（　）をつくり上げてしまう。",
+        "options": [
+          "一元",
+          "二元",
+          "概念",
+          "観念"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "概念": null,
+            "観念": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "観念",
+          "confidence": 0.97,
+          "probabilities": {
+            "一元": 0.0,
+            "二元": 0.0,
+            "概念": 0.02,
+            "観念": 0.98
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.43
+        }
+      },
+      "usage": {
+        "input_tokens": 520,
+        "output_tokens": 69
+      }
+    }
+  },
+  {
+    "id": "gk03-024",
+    "intended": "理念",
+    "alternative": "観念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "掲げられた（　）がどれほど立派でも、それを支える仕組みがなければ空語に終わる。",
+        "options": [
+          "一元",
+          "二元",
+          "理念",
+          "観念"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "理念": null,
+            "観念": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "理念",
+          "confidence": 0.99,
+          "probabilities": {
+            "一元": 0.0,
+            "二元": 0.0,
+            "理念": 0.99,
+            "観念": 0.01
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.5
+        }
+      },
+      "usage": {
+        "input_tokens": 521,
+        "output_tokens": 67
+      }
+    }
+  },
+  {
+    "id": "gk03-029",
+    "intended": "一元",
+    "alternative": "観念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "世界のすべてを（　）の原理から説き起こそうとする試みは、古くから繰り返されてきた。",
+        "options": [
+          "一元",
+          "二元",
+          "敷衍",
+          "観念"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "敷衍": null,
+            "観念": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "一元",
+          "confidence": 0.99,
+          "probabilities": {
+            "一元": 0.99,
+            "二元": 0.0,
+            "敷衍": 0.0,
+            "観念": 0.01
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.41
+        }
+      },
+      "usage": {
+        "input_tokens": 530,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk03-030",
+    "intended": "二元",
+    "alternative": "概念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "精神と身体を切り離す（　）の枠組みが、近代の学問を長く支えてきた。",
+        "options": [
+          "一元",
+          "二元",
+          "敷衍",
+          "概念"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一元": null,
+            "二元": null,
+            "敷衍": null,
+            "概念": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "二元",
+          "confidence": 1.0,
+          "probabilities": {
+            "一元": 0.0,
+            "二元": 1.0,
+            "敷衍": 0.0,
+            "概念": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.16
+        }
+      },
+      "usage": {
+        "input_tokens": 522,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk04-032",
+    "intended": "アイロニー",
+    "alternative": "ディレンマ",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "便利さを求めた末に時間を失うという、現代の（　）がそこにある。",
+        "options": [
+          "アイロニー",
+          "ディレンマ",
+          "モチーフ",
+          "潜在"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アイロニー": null,
+            "ディレンマ": null,
+            "モチーフ": null,
+            "潜在": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "アイロニー",
+          "confidence": 0.96,
+          "probabilities": {
+            "アイロニー": 0.97,
+            "ディレンマ": 0.03,
+            "モチーフ": 0.0,
+            "潜在": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.35
+        }
+      },
+      "usage": {
+        "input_tokens": 531,
+        "output_tokens": 80
+      }
+    }
+  },
+  {
+    "id": "gk04-034",
+    "intended": "情念",
+    "alternative": "モチーフ",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "論理だけでは人は動かず、その底で（　）が判断を左右している。",
+        "options": [
+          "モチーフ",
+          "情念",
+          "潜在",
+          "顕在"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "モチーフ": null,
+            "情念": null,
+            "潜在": null,
+            "顕在": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "情念",
+          "confidence": 0.92,
+          "probabilities": {
+            "モチーフ": 0.03,
+            "情念": 0.94,
+            "潜在": 0.03,
+            "顕在": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.32
+        }
+      },
+      "usage": {
+        "input_tokens": 520,
+        "output_tokens": 72
+      }
+    }
+  },
+  {
+    "id": "gk04-036",
+    "intended": "自律",
+    "alternative": "他律",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "与えられた規則をなぞるだけの態度を、（　）とよぶことはできない。",
+        "options": [
+          "モチーフ",
+          "他律",
+          "潜在",
+          "自律"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "モチーフ": null,
+            "他律": null,
+            "潜在": null,
+            "自律": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "自律",
+          "confidence": 0.97,
+          "probabilities": {
+            "モチーフ": 0.01,
+            "他律": 0.01,
+            "潜在": 0.0,
+            "自律": 0.98
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.31
+        }
+      },
+      "usage": {
+        "input_tokens": 520,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk04-040",
+    "intended": "モチーフ",
+    "alternative": "情念",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "この画家の作品には、失われた故郷という（　）が繰り返し現れる。",
+        "options": [
+          "モチーフ",
+          "情念",
+          "潜在",
+          "顕在"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "モチーフ": null,
+            "情念": null,
+            "潜在": null,
+            "顕在": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "モチーフ",
+          "confidence": 0.99,
+          "probabilities": {
+            "モチーフ": 0.99,
+            "情念": 0.01,
+            "潜在": 0.0,
+            "顕在": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.27
+        }
+      },
+      "usage": {
+        "input_tokens": 523,
+        "output_tokens": 74
+      }
+    }
+  },
+  {
+    "id": "gk05-042",
+    "intended": "機械論",
+    "alternative": "要素論",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "世界を部品の集まりとみなす（　）のもとで、近代の学問は法則を探し続けてきた。",
+        "options": [
+          "機械論",
+          "科学の中立性",
+          "科学の制度化",
+          "要素論"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "機械論": null,
+            "科学の中立性": null,
+            "科学の制度化": null,
+            "要素論": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "機械論",
+          "confidence": 0.92,
+          "probabilities": {
+            "機械論": 0.94,
+            "科学の中立性": 0.0,
+            "科学の制度化": 0.0,
+            "要素論": 0.06
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.36
+        }
+      },
+      "usage": {
+        "input_tokens": 542,
+        "output_tokens": 80
+      }
+    }
+  },
+  {
+    "id": "gk05-043",
+    "intended": "要素論",
+    "alternative": "検証",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "水を水素と酸素に分けて調べる進め方は、（　）の典型といえる。",
+        "options": [
+          "検証",
+          "科学の中立性",
+          "科学の制度化",
+          "要素論"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "検証": null,
+            "科学の中立性": null,
+            "科学の制度化": null,
+            "要素論": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "要素論",
+          "confidence": 0.92,
+          "probabilities": {
+            "検証": 0.06,
+            "科学の中立性": 0.0,
+            "科学の制度化": 0.0,
+            "要素論": 0.9400000000000001
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.22
+        }
+      },
+      "usage": {
+        "input_tokens": 532,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk05-047",
+    "intended": "科学主義",
+    "alternative": "科学の中立性",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "あらゆる問いに答えを出せるという（　）は、価値の判断まで研究者に委ねてしまう。",
+        "options": [
+          "パラダイム",
+          "科学の中立性",
+          "科学の制度化",
+          "科学主義"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "パラダイム": null,
+            "科学の中立性": null,
+            "科学の制度化": null,
+            "科学主義": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "科学主義",
+          "confidence": 0.8,
+          "probabilities": {
+            "パラダイム": 0.0,
+            "科学の中立性": 0.15,
+            "科学の制度化": 0.0,
+            "科学主義": 0.85
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.29
+        }
+      },
+      "usage": {
+        "input_tokens": 549,
+        "output_tokens": 84
+      }
+    }
+  },
+  {
+    "id": "gk06-055",
+    "intended": "有機",
+    "alternative": "因果",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "（　）的なつながりを考慮せずに部品だけを調整すると、建物全体の使い勝手が損なわれる。",
+        "options": [
+          "コンテクスト",
+          "テクスト",
+          "因果",
+          "有機"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "コンテクスト": null,
+            "テクスト": null,
+            "因果": null,
+            "有機": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "コンテクスト",
+          "confidence": 0.43,
+          "probabilities": {
+            "コンテクスト": 0.57,
+            "テクスト": 0.0,
+            "因果": 0.01,
+            "有機": 0.42
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.38
+        }
+      },
+      "usage": {
+        "input_tokens": 540,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk07-062",
+    "intended": "記号",
+    "alternative": "コード",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "市の駅案内図では、色分けされた線が路線を示す（　）として使われ、乗り換えの手掛かりにもなる。",
+        "options": [
+          "コード",
+          "一義的",
+          "同一",
+          "記号"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "コード": null,
+            "一義的": null,
+            "同一": null,
+            "記号": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "記号",
+          "confidence": 0.83,
+          "probabilities": {
+            "コード": 0.13,
+            "一義的": 0.0,
+            "同一": 0.0,
+            "記号": 0.87
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.28
+        }
+      },
+      "usage": {
+        "input_tokens": 530,
+        "output_tokens": 69
+      }
+    }
+  },
+  {
+    "id": "gk07-063",
+    "intended": "コード",
+    "alternative": "記号",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "ある社会の服装の決まりを知らないと、式典で求められる（　）を読み違えることがある。",
+        "options": [
+          "コード",
+          "一義的",
+          "同一",
+          "記号"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "コード": null,
+            "一義的": null,
+            "同一": null,
+            "記号": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "コード",
+          "confidence": 0.99,
+          "probabilities": {
+            "コード": 0.99,
+            "一義的": 0.0,
+            "同一": 0.0,
+            "記号": 0.01
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.25
+        }
+      },
+      "usage": {
+        "input_tokens": 525,
+        "output_tokens": 68
+      }
+    }
+  },
+  {
+    "id": "gk07-064",
+    "intended": "表象",
+    "alternative": "象徴",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "心理学の調査では、夢の中で見た景色が、その人の記憶や不安を映す（　）として分析された。",
+        "options": [
+          "一義的",
+          "同一",
+          "表象",
+          "象徴"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一義的": null,
+            "同一": null,
+            "表象": null,
+            "象徴": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "象徴",
+          "confidence": 0.76,
+          "probabilities": {
+            "一義的": 0.0,
+            "同一": 0.0,
+            "表象": 0.18,
+            "象徴": 0.8200000000000001
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.35
+        }
+      },
+      "usage": {
+        "input_tokens": 530,
+        "output_tokens": 70
+      }
+    }
+  },
+  {
+    "id": "gk07-065",
+    "intended": "象徴",
+    "alternative": "表象",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "平和を表す白い鳩の絵は、抽象的な願いを担う（　）として広く知られている。",
+        "options": [
+          "一義的",
+          "同一",
+          "表象",
+          "象徴"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一義的": null,
+            "同一": null,
+            "表象": null,
+            "象徴": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "象徴",
+          "confidence": 1.0,
+          "probabilities": {
+            "一義的": 0.0,
+            "同一": 0.0,
+            "表象": 0.0,
+            "象徴": 1.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.23
+        }
+      },
+      "usage": {
+        "input_tokens": 524,
+        "output_tokens": 70
+      }
+    }
+  },
+  {
+    "id": "gk07-066",
+    "intended": "アレゴリー",
+    "alternative": "アナロジー",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "登場人物の対立を時代の価値観に重ねた物語は、社会批評を含む（　）として読まれた。",
+        "options": [
+          "アナロジー",
+          "アレゴリー",
+          "一義的",
+          "同一"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アナロジー": null,
+            "アレゴリー": null,
+            "一義的": null,
+            "同一": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "アレゴリー",
+          "confidence": 0.99,
+          "probabilities": {
+            "アナロジー": 0.01,
+            "アレゴリー": 0.99,
+            "一義的": 0.0,
+            "同一": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.28
+        }
+      },
+      "usage": {
+        "input_tokens": 538,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk07-067",
+    "intended": "分節",
+    "alternative": "記号",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "名づけによって連続した風景に区切りを与えることは、言語の（　）の働きを示している。",
+        "options": [
+          "一義的",
+          "分節",
+          "同一",
+          "記号"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "一義的": null,
+            "分節": null,
+            "同一": null,
+            "記号": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "分節",
+          "confidence": 1.0,
+          "probabilities": {
+            "一義的": 0.0,
+            "分節": 1.0,
+            "同一": 0.0,
+            "記号": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.19
+        }
+      },
+      "usage": {
+        "input_tokens": 527,
+        "output_tokens": 70
+      }
+    }
+  },
+  {
+    "id": "gk07-070",
+    "intended": "一義的",
+    "alternative": "コード",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "規則を（　）に定めると、例外に見える事例を扱えないという運用上の問題が生じる。",
+        "options": [
+          "コード",
+          "一義的",
+          "同一",
+          "差異"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "コード": null,
+            "一義的": null,
+            "同一": null,
+            "差異": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "一義的",
+          "confidence": 0.81,
+          "probabilities": {
+            "コード": 0.13,
+            "一義的": 0.86,
+            "同一": 0.01,
+            "差異": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.27
+        }
+      },
+      "usage": {
+        "input_tokens": 523,
+        "output_tokens": 70
+      }
+    }
+  },
+  {
+    "id": "gk08-071",
+    "intended": "両義的",
+    "alternative": "多義的",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "通信技術は人を結びつける一方で監視も可能にするため、解放と束縛を含む（　）な性格をもつ。",
+        "options": [
+          "世間",
+          "両義的",
+          "多義的",
+          "神話"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "世間": null,
+            "両義的": null,
+            "多義的": null,
+            "神話": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "両義的",
+          "confidence": 1.0,
+          "probabilities": {
+            "世間": 0.0,
+            "両義的": 1.0,
+            "多義的": 0.0,
+            "神話": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.29
+        }
+      },
+      "usage": {
+        "input_tokens": 535,
+        "output_tokens": 74
+      }
+    }
+  },
+  {
+    "id": "gk08-072",
+    "intended": "多義的",
+    "alternative": "両義的",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "「明るい」という語は、光の強さにも人の性格にも用いられる（　）な表現である。",
+        "options": [
+          "世間",
+          "両義的",
+          "多義的",
+          "神話"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "世間": null,
+            "両義的": null,
+            "多義的": null,
+            "神話": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "多義的",
+          "confidence": 0.63,
+          "probabilities": {
+            "世間": 0.0,
+            "両義的": 0.28,
+            "多義的": 0.72,
+            "神話": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.37
+        }
+      },
+      "usage": {
+        "input_tokens": 528,
+        "output_tokens": 73
+      }
+    }
+  },
+  {
+    "id": "gk08-076",
+    "intended": "文化相対主義",
+    "alternative": "文化人類学",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "研究者は現地の儀礼を自国の常識で否定せず、その土地の歴史から理解する（　）を採った。",
+        "options": [
+          "世間",
+          "文化人類学",
+          "文化相対主義",
+          "神話"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "世間": null,
+            "文化人類学": null,
+            "文化相対主義": null,
+            "神話": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "文化相対主義",
+          "confidence": 0.99,
+          "probabilities": {
+            "世間": 0.0,
+            "文化人類学": 0.01,
+            "文化相対主義": 0.99,
+            "神話": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.22
+        }
+      },
+      "usage": {
+        "input_tokens": 541,
+        "output_tokens": 80
+      }
+    }
+  },
+  {
+    "id": "gk08-077",
+    "intended": "文化人類学",
+    "alternative": "文化",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "研究者が島の住民と長期間暮らし、婚礼や贈り物の慣習を調べる研究は、（　）の実地調査である。",
+        "options": [
+          "世間",
+          "文化",
+          "文化人類学",
+          "神話"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "世間": null,
+            "文化": null,
+            "文化人類学": null,
+            "神話": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "文化人類学",
+          "confidence": 0.96,
+          "probabilities": {
+            "世間": 0.0,
+            "文化": 0.03,
+            "文化人類学": 0.97,
+            "神話": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.25
+        }
+      },
+      "usage": {
+        "input_tokens": 535,
+        "output_tokens": 74
+      }
+    }
+  },
+  {
+    "id": "gk09-081",
+    "intended": "アニミズム",
+    "alternative": "禁忌",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "森の木々や川にも精霊が宿ると信じ、伐採の前に祈りをささげる行為には（　）の考え方が表れる。",
+        "options": [
+          "アニミズム",
+          "主観",
+          "客観",
+          "禁忌"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アニミズム": null,
+            "主観": null,
+            "客観": null,
+            "禁忌": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "アニミズム",
+          "confidence": 1.0,
+          "probabilities": {
+            "アニミズム": 1.0,
+            "主観": 0.0,
+            "客観": 0.0,
+            "禁忌": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.13
+        }
+      },
+      "usage": {
+        "input_tokens": 540,
+        "output_tokens": 76
+      }
+    }
+  },
+  {
+    "id": "gk09-083",
+    "intended": "規範",
+    "alternative": "哲学",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "相手との約束を守るべきだという（　）は、損得だけで行動を決めないための判断の基準になる。",
+        "options": [
+          "主観",
+          "哲学",
+          "客観",
+          "規範"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "主観": null,
+            "哲学": null,
+            "客観": null,
+            "規範": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "規範",
+          "confidence": 1.0,
+          "probabilities": {
+            "主観": 0.0,
+            "哲学": 0.0,
+            "客観": 0.0,
+            "規範": 1.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.24
+        }
+      },
+      "usage": {
+        "input_tokens": 531,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk09-085",
+    "intended": "エスニシティ",
+    "alternative": "規範",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "同じ国の市民であっても、祖先の言語や祭りを共有する人々の（　）は、国籍だけでは捉えられない。",
+        "options": [
+          "エスニシティ",
+          "主観",
+          "客観",
+          "規範"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エスニシティ": null,
+            "主観": null,
+            "客観": null,
+            "規範": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "エスニシティ",
+          "confidence": 1.0,
+          "probabilities": {
+            "エスニシティ": 1.0,
+            "主観": 0.0,
+            "客観": 0.0,
+            "規範": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.11
+        }
+      },
+      "usage": {
+        "input_tokens": 541,
+        "output_tokens": 78
+      }
+    }
+  },
+  {
+    "id": "gk10-094",
+    "intended": "知覚",
+    "alternative": "認識",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "暗い室内でも、耳に届く音の方向と強さから近づく足音を（　）し、周囲の状態を捉えることができる。",
+        "options": [
+          "アイデンティティ",
+          "モラトリアム",
+          "知覚",
+          "認識"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アイデンティティ": null,
+            "モラトリアム": null,
+            "知覚": null,
+            "認識": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "知覚",
+          "confidence": 0.93,
+          "probabilities": {
+            "アイデンティティ": 0.0,
+            "モラトリアム": 0.0,
+            "知覚": 0.95,
+            "認識": 0.05
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.42
+        }
+      },
+      "usage": {
+        "input_tokens": 552,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk10-100",
+    "intended": "モラトリアム",
+    "alternative": "アイデンティティ",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "学生として社会の責任を全面的に担う前に進路を模索できる期間は、青年期の（　）として捉えられる。",
+        "options": [
+          "アイデンティティ",
+          "モラトリアム",
+          "独我論",
+          "自我"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アイデンティティ": null,
+            "モラトリアム": null,
+            "独我論": null,
+            "自我": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "モラトリアム",
+          "confidence": 1.0,
+          "probabilities": {
+            "アイデンティティ": 0.0,
+            "モラトリアム": 1.0,
+            "独我論": 0.0,
+            "自我": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.14
+        }
+      },
+      "usage": {
+        "input_tokens": 554,
+        "output_tokens": 84
+      }
+    }
+  },
+  {
+    "id": "gk11-108",
+    "intended": "理性",
+    "alternative": "ロゴス",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "感情に流されず、根拠を検討して判断する人間の能力は、英語の reason に対応する概念として（　）と呼ばれる。",
+        "options": [
+          "ロゴス",
+          "形而上",
+          "感性",
+          "理性"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "ロゴス": null,
+            "形而上": null,
+            "感性": null,
+            "理性": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "理性",
+          "confidence": 0.85,
+          "probabilities": {
+            "ロゴス": 0.11,
+            "形而上": 0.0,
+            "感性": 0.0,
+            "理性": 0.89
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.28
+        }
+      },
+      "usage": {
+        "input_tokens": 539,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk12-112",
+    "intended": "ア・ポステリオリ",
+    "alternative": "命題",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "この金属が熱で膨張するという判断は、実際に加熱して測った結果に基づくため、（　）である。",
+        "options": [
+          "ア・ポステリオリ",
+          "世俗化",
+          "命題",
+          "近代化"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "ア・ポステリオリ": null,
+            "世俗化": null,
+            "命題": null,
+            "近代化": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "ア・ポステリオリ",
+          "confidence": 0.99,
+          "probabilities": {
+            "ア・ポステリオリ": 0.99,
+            "世俗化": 0.0,
+            "命題": 0.01,
+            "近代化": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.14
+        }
+      },
+      "usage": {
+        "input_tokens": 545,
+        "output_tokens": 83
+      }
+    }
+  },
+  {
+    "id": "gk12-115",
+    "intended": "実存",
+    "alternative": "命題",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "人間一般の特徴だけでは説明できない、一人ひとりが死を意識しながら自ら生き方を選ぶあり方を、（　）として問う。",
+        "options": [
+          "世俗化",
+          "命題",
+          "実存",
+          "近代化"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "世俗化": null,
+            "命題": null,
+            "実存": null,
+            "近代化": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "実存",
+          "confidence": 1.0,
+          "probabilities": {
+            "世俗化": 0.0,
+            "命題": 0.0,
+            "実存": 1.0,
+            "近代化": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.1
+        }
+      },
+      "usage": {
+        "input_tokens": 542,
+        "output_tokens": 71
+      }
+    }
+  },
+  {
+    "id": "gk12-118",
+    "intended": "アンビヴァレンス",
+    "alternative": "弁証法",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "同じ相手を大切に思うと同時に憎らしくも感じる心理は、片方の気持ちだけでは捉えられない（　）である。",
+        "options": [
+          "アンビヴァレンス",
+          "世俗化",
+          "弁証法",
+          "近代化"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アンビヴァレンス": null,
+            "世俗化": null,
+            "弁証法": null,
+            "近代化": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "アンビヴァレンス",
+          "confidence": 0.99,
+          "probabilities": {
+            "アンビヴァレンス": 0.99,
+            "世俗化": 0.0,
+            "弁証法": 0.01,
+            "近代化": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.13
+        }
+      },
+      "usage": {
+        "input_tokens": 555,
+        "output_tokens": 85
+      }
+    }
+  },
+  {
+    "id": "gk12-120",
+    "intended": "世俗化",
+    "alternative": "近代化",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "政治や教育の運営が宗教組織の権威から独立し、公的な判断が信仰だけに左右されなくなる変化を（　）という。",
+        "options": [
+          "アンビヴァレンス",
+          "世俗化",
+          "無意識",
+          "近代化"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アンビヴァレンス": null,
+            "世俗化": null,
+            "無意識": null,
+            "近代化": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "世俗化",
+          "confidence": 1.0,
+          "probabilities": {
+            "アンビヴァレンス": 0.0,
+            "世俗化": 1.0,
+            "無意識": 0.0,
+            "近代化": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.13
+        }
+      },
+      "usage": {
+        "input_tokens": 556,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk13-122",
+    "intended": "市民社会",
+    "alternative": "民主主義",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "身分に縛られず自由で対等な人々が権利をもち、経済活動や公共の議論を担う社会を、ここでは（　）と呼ぶ。",
+        "options": [
+          "功利主義",
+          "市民社会",
+          "民主主義",
+          "社会主義"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "功利主義": null,
+            "市民社会": null,
+            "民主主義": null,
+            "社会主義": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "市民社会",
+          "confidence": 0.97,
+          "probabilities": {
+            "功利主義": 0.0,
+            "市民社会": 0.98,
+            "民主主義": 0.02,
+            "社会主義": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.33
+        }
+      },
+      "usage": {
+        "input_tokens": 552,
+        "output_tokens": 79
+      }
+    }
+  },
+  {
+    "id": "gk13-125",
+    "intended": "国民国家",
+    "alternative": "ナショナリズム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "教育や共通の言語を通じて、人々を同じ国に属する民としてまとめ、その意識を基盤とする仕組みを（　）という。",
+        "options": [
+          "ナショナリズム",
+          "功利主義",
+          "国民国家",
+          "社会主義"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "ナショナリズム": null,
+            "功利主義": null,
+            "国民国家": null,
+            "社会主義": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "国民国家",
+          "confidence": 0.77,
+          "probabilities": {
+            "ナショナリズム": 0.17,
+            "功利主義": 0.0,
+            "国民国家": 0.83,
+            "社会主義": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.26
+        }
+      },
+      "usage": {
+        "input_tokens": 558,
+        "output_tokens": 82
+      }
+    }
+  },
+  {
+    "id": "gk14-135",
+    "intended": "啓蒙主義",
+    "alternative": "ヒューマニズム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "迷信や身分に基づく権威をそのまま信じず、人間の考える力で検討し社会を変えようとする思想は（　）である。",
+        "options": [
+          "アナキズム",
+          "ヒューマニズム",
+          "啓蒙主義",
+          "時間・空間の均質化"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "アナキズム": null,
+            "ヒューマニズム": null,
+            "啓蒙主義": null,
+            "時間・空間の均質化": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "啓蒙主義",
+          "confidence": 0.99,
+          "probabilities": {
+            "アナキズム": 0.0,
+            "ヒューマニズム": 0.01,
+            "啓蒙主義": 0.99,
+            "時間・空間の均質化": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.28
+        }
+      },
+      "usage": {
+        "input_tokens": 570,
+        "output_tokens": 89
+      }
+    }
+  },
+  {
+    "id": "gk15-141",
+    "intended": "大衆社会",
+    "alternative": "システム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "多数の人々の支持や好みが政治と文化を大きく左右し、受け身の同調も問題となる社会を、（　）として論じる。",
+        "options": [
+          "エコロジー",
+          "システム",
+          "多様性",
+          "大衆社会"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "システム": null,
+            "多様性": null,
+            "大衆社会": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "大衆社会",
+          "confidence": 1.0,
+          "probabilities": {
+            "エコロジー": 0.0,
+            "システム": 0.0,
+            "多様性": 0.0,
+            "大衆社会": 1.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.16
+        }
+      },
+      "usage": {
+        "input_tokens": 553,
+        "output_tokens": 81
+      }
+    }
+  },
+  {
+    "id": "gk15-142",
+    "intended": "消費社会",
+    "alternative": "大衆社会",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "必要な物をそろえるだけでなく、流行や自分らしさを求めて商品を買う行為が生活の中心となる社会は（　）である。",
+        "options": [
+          "エコロジー",
+          "多様性",
+          "大衆社会",
+          "消費社会"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "多様性": null,
+            "大衆社会": null,
+            "消費社会": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "消費社会",
+          "confidence": 1.0,
+          "probabilities": {
+            "エコロジー": 0.0,
+            "多様性": 0.0,
+            "大衆社会": 0.0,
+            "消費社会": 1.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.13
+        }
+      },
+      "usage": {
+        "input_tokens": 555,
+        "output_tokens": 80
+      }
+    }
+  },
+  {
+    "id": "gk15-146",
+    "intended": "装置",
+    "alternative": "システム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "温度を測るために設けたセンサーや回路を備える機械は、その目的を果たす測定の（　）として働く。",
+        "options": [
+          "エコロジー",
+          "システム",
+          "多様性",
+          "装置"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "システム": null,
+            "多様性": null,
+            "装置": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "装置",
+          "confidence": 0.72,
+          "probabilities": {
+            "エコロジー": 0.0,
+            "システム": 0.21,
+            "多様性": 0.0,
+            "装置": 0.79
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.34
+        }
+      },
+      "usage": {
+        "input_tokens": 542,
+        "output_tokens": 75
+      }
+    }
+  },
+  {
+    "id": "gk15-148",
+    "intended": "グローバル化",
+    "alternative": "システム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "製品の生産や取引が国境を越えて結びつき、ある地域の変化が遠い地域にも及ぶ動きは、（　）として捉える。",
+        "options": [
+          "エコロジー",
+          "グローバル化",
+          "システム",
+          "多様性"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "グローバル化": null,
+            "システム": null,
+            "多様性": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "グローバル化",
+          "confidence": 1.0,
+          "probabilities": {
+            "エコロジー": 0.0,
+            "グローバル化": 1.0,
+            "システム": 0.0,
+            "多様性": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.16
+        }
+      },
+      "usage": {
+        "input_tokens": 555,
+        "output_tokens": 83
+      }
+    }
+  },
+  {
+    "id": "gk15-149",
+    "intended": "エコロジー",
+    "alternative": "システム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "森を資源の量だけで評価せず、生物と周囲の環境との相互関係から守ろうとする考え方は、（　）に基づく。",
+        "options": [
+          "エコロジー",
+          "グローバル化",
+          "システム",
+          "多様性"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "グローバル化": null,
+            "システム": null,
+            "多様性": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "エコロジー",
+          "confidence": 0.99,
+          "probabilities": {
+            "エコロジー": 0.99,
+            "グローバル化": 0.0,
+            "システム": 0.01,
+            "多様性": 0.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.26
+        }
+      },
+      "usage": {
+        "input_tokens": 553,
+        "output_tokens": 82
+      }
+    }
+  },
+  {
+    "id": "gk15-150",
+    "intended": "多様性",
+    "alternative": "システム",
+    "payload": {
+      "model": "jev-latest",
+      "state": {
+        "cloze": "同じ種類を数多く集めるだけでなく、異なる性質や考え方が共に存在する状態に注目するとき、（　）が問題になる。",
+        "options": [
+          "エコロジー",
+          "グローバル化",
+          "システム",
+          "多様性"
+        ]
+      },
+      "questions": {
+        "best": {
+          "type": "choice",
+          "instructions": "日本語の評論の空欄に入る語を、前後の文脈と通常の語義から最も適切なもの一つとして選ぶ。作問者の意図を推測しない。",
+          "criteria": {
+            "エコロジー": null,
+            "グローバル化": null,
+            "システム": null,
+            "多様性": null
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "instructions": "`options` の二つ以上が、`cloze` の空欄の答えとして同程度に妥当で、書かれた文脈だけでは一つに絞れないか。単に文法的に入るだけ、特殊な仮定を補えば入るだけの場合は否。"
+        }
+      }
+    },
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "best": {
+          "type": "choice",
+          "choice": "多様性",
+          "confidence": 1.0,
+          "probabilities": {
+            "エコロジー": 0.0,
+            "グローバル化": 0.0,
+            "システム": 0.0,
+            "多様性": 1.0
+          }
+        },
+        "ambiguous": {
+          "type": "noul",
+          "noul": 0.19
+        }
+      },
+      "usage": {
+        "input_tokens": 557,
+        "output_tokens": 80
+      }
+    }
+  }
+]
