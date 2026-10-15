@@ -1,5 +1,7 @@
 # 文中四択の例文修正・最終検証（2026-10-15）
 
+この監査結果と修正一覧は、commit `83fbfba` 時点の教材データを対象とする履歴である。以後のHEADに対する全問監査を示すものではない。`abff8de` では `gk14-140 時間・空間の均質化` / `gk15-146 装置` の例文と `gk15-147 リスク` の語義を変更したため、第14・15セットの現行JSONのハッシュは本監査の入力ハッシュと異なる。変更した2問の追加Jev検証は [issue-4-jev.json](../issue-4-jev.json)、変更内容と検証の説明は [issue-4-implementation.md](../issue-4-implementation.md) を参照。
+
 ## 結果
 
 第1〜15セットのうち、前回監査の確認対象80問について、例文と対応する空欄文を修正した。変更は80組・160フィールドのみ。ID、正答語、語義、解説、対義語、関連語、セット構成、dataVersionは変更していない。アプリの採点・進捗・選択肢生成も変更していない。
@@ -28,15 +30,15 @@ Jevの閾値は教材向けに校正された合否基準ではない。全て�
 
 ## 検証
 
-以下は最終編集後に成功:
+以下は本監査対象の教材の最終編集後（`83fbfba` に保存した状態）に成功:
 
 - node --check: mode-vocab.js / meaning-guard.js / set-progress.js / srs.js
 - check-data.mjs / check-data-contract.mjs / check-meaning-guard.cjs
 - check-set-choices.mjs / check-context-choices.mjs
 - check-srs.cjs / check-set-progress.cjs / check-study-plan.cjs
 - git diff --check
-- HEADとのJSON比較: 例文・空欄以外の全フィールドとメタ情報が一致。
-- 最終監査150問の入力sha256が現在のセットJSONと一致。
+- 修正前のHEAD（`01bc794`）とのJSON比較: 例文・空欄以外の全フィールドとメタ情報が一致。
+- 最終監査150問の入力sha256が監査実施時点（`83fbfba`）のセットJSONと一致。
 
 UIコード・スタイルは変更していない。ブラウザ表示の検証、commit、push、公開は実施していない。
 
