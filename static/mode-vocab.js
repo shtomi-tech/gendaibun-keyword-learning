@@ -524,7 +524,7 @@ const GendaibunKeywordApp = (() => {
     else if (learned < total) primary = [`${total}語の学習を始める`, startLearn, `${BATCH_SIZE}語の暗記カードと意味確認を1ブロックとして進めます。`];
     else if (reviews.length) primary = [`間違えた${reviews.length}語を復習する`, startReview, "文中問題を解き直します。"];
     else if (nextUnclearedId) {
-      const nextIndex = Object.keys(state.manifest.sets).indexOf(nextUnclearedId) + 1;
+      const nextIndex = setNumber(nextUnclearedId);
       primary = [`第${nextIndex}セットへ進む →`, () => switchSet(nextUnclearedId), "次の未CLEARセットを開きます。"];
     }
     else primary = ["このセットをもう一周する", startLearn, "暗記カードからもう一度確認します。"];
@@ -810,6 +810,10 @@ const GendaibunKeywordApp = (() => {
     });
   }
 
+  function setNumber(setId) {
+    return Number(setId.replace("gk-set-", ""));
+  }
+
   function nextSetId(currentSetId) {
     const ids = Object.keys(state.manifest.sets);
     const index = ids.indexOf(currentSetId);
@@ -859,7 +863,7 @@ const GendaibunKeywordApp = (() => {
       ),
     );
     const list = el("div", { class: "setList", "aria-label": "学習セット一覧" });
-    sources.forEach(({ setId, entry, set, progress }, index) => {
+    sources.forEach(({ setId, entry, set, progress }) => {
       const isCurrent = setId === state.setId;
       const summary = set ? GendaibunSetProgress.summarize(set, progress) : null;
       const total = summary?.total || 0;
@@ -871,7 +875,7 @@ const GendaibunKeywordApp = (() => {
         "aria-current": isCurrent ? "true" : null,
         onclick: () => { if (isCurrent) return; switchSet(setId, details); },
       },
-        el("span", { class: "setUnitNumber" }, String(index + 1).padStart(2, "0")),
+        el("span", { class: "setUnitNumber" }, String(setNumber(setId)).padStart(2, "0")),
         el("span", { class: "setUnitBody" },
           el("span", { class: "setOptionTop" },
             el("span", { class: "setOptionName" }, entry.label),
@@ -1321,7 +1325,7 @@ const GendaibunKeywordApp = (() => {
     else if (completedSet) {
       const nextId = nextSetId(state.setId);
       if (nextId) {
-        const nextIndex = Object.keys(state.manifest.sets).indexOf(nextId) + 1;
+        const nextIndex = setNumber(nextId);
         actions.appendChild(el("button", { class: "cta reviewCta", onclick: () => switchSet(nextId) }, `第${nextIndex}セットへ進む →`));
       } else {
         const totalSets = Object.keys(state.manifest.sets).length;
