@@ -60,6 +60,18 @@
     "gk-set-15": {
       "label": "第15セット　現代社会・環境と多様性",
       "dataUrl": "data/set-15.json"
+    },
+    "gk-set-16": {
+      "label": "第16セット　構造主義・ジェンダー・自己決定",
+      "dataUrl": "data/set-16.json"
+    },
+    "gk-set-17": {
+      "label": "第17セット　小説重要語・人物の心情と態度",
+      "dataUrl": "data/set-17.json"
+    },
+    "gk-set-18": {
+      "label": "第18セット　小説重要語・慣用的な言い回し",
+      "dataUrl": "data/set-18.json"
     }
   }
 }
