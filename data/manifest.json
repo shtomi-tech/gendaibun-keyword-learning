@@ -60,6 +60,18 @@
     "gk-set-15": {
       "label": "第15セット　現代社会・環境と多様性",
       "dataUrl": "data/set-15.json"
+    },
+    "gk-set-19": {
+      "label": "第19セット　小説重要語・表情と態度",
+      "dataUrl": "data/set-19.json"
+    },
+    "gk-set-20": {
+      "label": "第20セット　小説重要語・理解と振る舞い",
+      "dataUrl": "data/set-20.json"
+    },
+    "gk-set-21": {
+      "label": "第21セット　小説重要語・様子と副詞",
+      "dataUrl": "data/set-21.json"
     }
   }
 }
